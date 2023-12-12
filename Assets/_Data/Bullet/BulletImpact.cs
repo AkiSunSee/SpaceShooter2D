@@ -31,20 +31,8 @@ public class BulletImpact : BulletAbstract
     }
 
     protected virtual void OnTriggerEnter(Collider other){
-        if(other.transform.parent == this.BulletCtrl.Shooter) return;
-        this.BulletCtrl.DmgSender.Send(other.transform);
-        this.createFXImpact(other);        
+        if (other.transform.parent == this.BulletCtrl.Shooter)  return;
+        this.BulletCtrl.DmgSender.Send(other.transform);        
     }
 
-    protected virtual void createFXImpact(Collider other){
-        string fxName = this.GetImpactFX();
-        Vector3 hitPos = transform.position;
-        Quaternion hitRot = transform.parent.rotation;
-        Transform fxImpact = FXSpawner.Instance.Spawn(fxName, hitPos, hitRot);
-        fxImpact.gameObject.SetActive(true);
-    }
-
-    protected virtual string GetImpactFX(){
-        return FXSpawner.FX2;
-    }
 }

@@ -26,6 +26,6 @@ public class AkiBehaviour : MonoBehaviour
     }
 
     protected virtual void OnEnable(){
-        //override
+        this.ResetValue();
     }
 }
