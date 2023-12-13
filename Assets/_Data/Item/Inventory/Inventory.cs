@@ -17,6 +17,15 @@ public class Inventory : AkiBehaviour
         return true;
     }
 
+    public virtual bool DeductItem(ItemCode itemCode, int deductCount){
+        ItemInventory itemInventory = this.GetItemByCode(itemCode);
+        int newCount = itemInventory.itemCount - deductCount;
+        if (newCount < 0) return false;
+
+        itemInventory.itemCount = newCount;
+        return true;
+    }
+
     protected virtual ItemInventory GetItemByCode(ItemCode itemCode){
         ItemInventory itemInventory = this.items.Find((item)=> item.itemProfile.itemCode == itemCode);
         if(itemInventory == null) itemInventory = this.AddEmptyProfile(itemCode);

@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SphereCollider))]
 
-public class ItemPickupable : AkiBehaviour
+public class ItemPickupable : ItemAbstract
 {
     [SerializeField] protected SphereCollider sphereCollider;
 
@@ -17,12 +18,17 @@ public class ItemPickupable : AkiBehaviour
         if(this.sphereCollider != null) return;
         this.sphereCollider = GetComponent<SphereCollider>();
         this.sphereCollider.isTrigger = true;
-        this.sphereCollider.radius = 0.07f;
+        this.sphereCollider.radius = 0.2f;
         Debug.LogWarning(transform.name + "LoadSphereCollider",gameObject);
     }
 
     public static ItemCode StringToItemCode(string itemName){
-        return (ItemCode)System.Enum.Parse(typeof(ItemCode), itemName);
+        try{
+            return (ItemCode)System.Enum.Parse(typeof(ItemCode), itemName);
+        }catch (ArgumentException ex){
+            Debug.Log(ex.ToString());
+            return ItemCode.NoItem;
+        }
     }
     
     public virtual ItemCode GetItemCode(){
@@ -30,6 +36,11 @@ public class ItemPickupable : AkiBehaviour
     }
 
     public virtual void Picked(){
-        ItemDropSpawner.Instance.Despawn(transform.parent);
+        this.itemCtrl.ItemDespawn.DespawnObj();
+    }
+
+    public virtual void OnMouseDown(){
+        Debug.Log(transform.parent.name);
+        PlayerCtrl.Instance.PlayerPickup.ItemPickup(this);
     }
 }

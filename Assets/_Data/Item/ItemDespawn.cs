@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemDropDespawn : DespawnByTime
+public class ItemDespawn : DespawnByTime
 {
     public override void DespawnObj(){
         ItemDropSpawner.Instance.Despawn(transform.parent);
