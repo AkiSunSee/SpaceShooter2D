@@ -16,7 +16,7 @@ MonoBehaviour:
   hpMax: 5
   radius: 1.03
   dropList:
-  - itemSO: {fileID: 11400000, guid: 8ef6d8c813a006e479d24b9889ae8405, type: 2}
+  - itemPSO: {fileID: 11400000, guid: ac7e0165f8a32d04298133f3241447bd, type: 2}
     dropRate: 70000
     minDrop: 0
     maxDrop: 0

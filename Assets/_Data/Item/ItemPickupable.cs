@@ -40,7 +40,6 @@ public class ItemPickupable : ItemAbstract
     }
 
     public virtual void OnMouseDown(){
-        Debug.Log(transform.parent.name);
         PlayerCtrl.Instance.PlayerPickup.ItemPickup(this);
     }
 }
