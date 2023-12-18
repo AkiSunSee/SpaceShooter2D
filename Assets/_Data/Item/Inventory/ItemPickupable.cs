@@ -23,12 +23,7 @@ public class ItemPickupable : ItemAbstract
     }
 
     public static ItemCode StringToItemCode(string itemName){
-        try{
-            return (ItemCode)System.Enum.Parse(typeof(ItemCode), itemName);
-        }catch (ArgumentException ex){
-            Debug.Log(ex.ToString());
-            return ItemCode.NoItem;
-        }
+       return ItemCodeParser.FromString(itemName);
     }
     
     public virtual ItemCode GetItemCode(){

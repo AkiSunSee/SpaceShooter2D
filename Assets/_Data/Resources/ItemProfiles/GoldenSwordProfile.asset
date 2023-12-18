@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80b8fe91d59998c4a8a828f8d8f07dbf, type: 3}
   m_Name: GoldenSwordProfile
   m_EditorClassIdentifier: 
-  itemCode: 3
+  itemCode: 1000
   itemType: 2
   itemName: Golden Sword
   defaultMaxStack: 1
@@ -20,5 +20,15 @@ MonoBehaviour:
   - ingredients:
     - itemProfile: {fileID: 11400000, guid: 8108f82699d57ba4a82b73aeb7e28cc0, type: 2}
       itemCount: 2
+    - itemProfile: {fileID: 11400000, guid: ac7e0165f8a32d04298133f3241447bd, type: 2}
+      itemCount: 10
+  - ingredients:
+    - itemProfile: {fileID: 11400000, guid: 8108f82699d57ba4a82b73aeb7e28cc0, type: 2}
+      itemCount: 5
+    - itemProfile: {fileID: 11400000, guid: ac7e0165f8a32d04298133f3241447bd, type: 2}
+      itemCount: 12
+  - ingredients:
+    - itemProfile: {fileID: 11400000, guid: 8108f82699d57ba4a82b73aeb7e28cc0, type: 2}
+      itemCount: 8
     - itemProfile: {fileID: 11400000, guid: ac7e0165f8a32d04298133f3241447bd, type: 2}
       itemCount: 20

@@ -12,13 +12,33 @@ public class Inventory : AkiBehaviour
     protected override void Start() {
         base.Start();
         this.AddItem(ItemCode.GoldenSword,1);
-        this.AddItem(ItemCode.IronOre,8);
-        this.AddItem(ItemCode.GoldOre,30);
+        this.AddItem(ItemCode.IronOre,15);
+        this.AddItem(ItemCode.GoldOre,60);
     }
     
     public virtual bool IsInventoryFull(){
         return this.curSlot >= this.maxSlot;
     }
+
+    public virtual bool AddItem(ItemInventory itemInventory){
+        int addCount = itemInventory.itemCount;
+        ItemProfileSO itemProfile = itemInventory.itemProfile;
+        
+        ItemCode itemCode = itemProfile.itemCode;
+        ItemType itemType = itemProfile.itemType;
+        //Debug.Log(itemCode+ " "+itemType);
+        if(itemType == ItemType.Resources) return this.AddItem(itemCode, addCount);
+        if(itemType == ItemType.Equipment) return this.AddEquipment(itemInventory);
+
+        return true;
+    }
+
+    public virtual bool AddEquipment(ItemInventory itemInventory){
+        if(this.IsInventoryFull()) return false;
+        this.items.Add(itemInventory);
+        return true;
+    }
+
     public virtual bool AddItem(ItemCode itemCode, int addCount){
         if(this.IsInventoryFull()){
             //Debug.Log("Inventory is full!");
@@ -69,14 +89,9 @@ public class Inventory : AkiBehaviour
     }
 
     public virtual ItemProfileSO GetItemProfile(ItemCode itemCode){
-        var profiles = Resources.LoadAll("ItemProfiles", typeof(ItemProfileSO));
-        foreach (ItemProfileSO profile in profiles)
-        {
-            if(profile.itemCode != itemCode) continue;
-            return profile;
-        }
-        return null;
+        return ItemProfileSO.FindByItemCode(itemCode);
     }
+
     public virtual ItemInventory GetItemNotFullStack(ItemCode itemCode){
         foreach (ItemInventory item in this.items)
         {
@@ -104,8 +119,9 @@ public class Inventory : AkiBehaviour
     }
 
     public virtual bool DeductItem(ItemCode itemCode, int deductCount){
+        if(deductCount <= 0) return false;
         int deductRemain = deductCount;
-        Debug.Log(itemCode.ToString()+ " - " + deductCount);
+        //Debug.Log(itemCode.ToString()+ " - " + deductCount);
         ItemInventory item = this.GetItemByCode(itemCode);
         if(item == null) return false;
         if(item.itemCount <= deductRemain){

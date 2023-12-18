@@ -9,7 +9,9 @@ public class ItemUpgrade : InventoryAbstract
 
     protected override void Start(){
         base.Start();
-        Invoke(nameof(this.Test),10);
+        Invoke(nameof(this.Test),1);
+        Invoke(nameof(this.Test),2);
+        Invoke(nameof(this.Test),3);
     }
 
     protected virtual void Test(){
@@ -31,6 +33,7 @@ public class ItemUpgrade : InventoryAbstract
 
         this.DeductIngredients(upgradeLevels, itemInventory.upgradeLevel);
         itemInventory.upgradeLevel++;
+        Debug.Log("Upgrade item: "+itemInventory.itemProfile.itemCode+" to level "+itemInventory.upgradeLevel + " success");
 
         return true;
     }
