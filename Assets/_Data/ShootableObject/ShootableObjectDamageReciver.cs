@@ -2,39 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JunkDamageReciver : DamageReciver
+public class ShootableObjectDamageReciver : DamageReciver
 {
-    [Header("Junk")]
-    [SerializeField] protected JunkCtrl junkCtrl;
+    [Header("Shootable Object")]
+    [SerializeField] protected ShootableObjectCtrl shootableObjectCtrl;
 
     protected override void LoadComponents(){
         base.LoadComponents();
-        this.LoadJunkCtrl();
+        this.LoadShootableObjectCtrl();
         this.LoadDataShootableObjectSO();
     }
 
     protected virtual void LoadDataShootableObjectSO(){
-        this.hpMax = this.junkCtrl.ShootableObjectSO.hpMax;
-        this.sphereCollider.radius = this.junkCtrl.ShootableObjectSO.radius; 
+        this.hpMax = this.shootableObjectCtrl.ShootableObjectSO.hpMax;
+        this.sphereCollider.radius = this.shootableObjectCtrl.ShootableObjectSO.radius; 
     }
     
-    protected virtual void LoadJunkCtrl(){
-        if(this.junkCtrl != null) return;
-        this.junkCtrl = transform.parent.GetComponent<JunkCtrl>();
-        Debug.Log(transform.name + ": LoadJunkCtrl", gameObject);
+    protected virtual void LoadShootableObjectCtrl(){
+        if(this.shootableObjectCtrl != null) return;
+        this.shootableObjectCtrl = transform.parent.GetComponent<ShootableObjectCtrl>();
+        Debug.Log(transform.name + ": LoadShootableObjectCtrl", gameObject);
     }
 
     protected override void OnDead(){
         this.OnDeadFX();
         this.DropOnDead();
-        this.junkCtrl.JunkDespawn.DespawnObj();
+        this.shootableObjectCtrl.Despawn.DespawnObj();
         
     }
 
     protected virtual void DropOnDead(){
         Vector3 dropPos = transform.position;
         Quaternion dropRot = transform.rotation;
-        ItemDropSpawner.Instance.Drop(this.junkCtrl.ShootableObjectSO.dropList, dropPos, dropRot);
+        ItemDropSpawner.Instance.Drop(this.shootableObjectCtrl.ShootableObjectSO.dropList, dropPos, dropRot);
     }
 
     protected virtual void OnDeadFX(){

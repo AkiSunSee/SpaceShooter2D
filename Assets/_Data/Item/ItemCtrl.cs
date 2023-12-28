@@ -16,6 +16,10 @@ public class ItemCtrl : AkiBehaviour
         this.LoadItemInventory();
     }
 
+    protected override void OnEnable() {
+        this.ResetItem();
+    }
+
     protected virtual void LoadItemDespawn(){
         if(this.itemDespawn != null) return;
         this.itemDespawn = transform.GetComponentInChildren<ItemDespawn>();
@@ -23,15 +27,23 @@ public class ItemCtrl : AkiBehaviour
     }
 
     public virtual void SetItemInventory(ItemInventory itemInventory){
-        this.itemInventory = itemInventory;
+        this.itemInventory = this.itemInventory.Clone(itemInventory);
     }
 
     protected virtual void LoadItemInventory(){
         if(this.itemInventory.itemProfile != null) return;
         ItemCode itemCode = ItemCodeParser.FromString(transform.name);
         ItemProfileSO itemProfile = ItemProfileSO.FindByItemCode(itemCode);
-        Debug.Log(itemCode+" "+itemProfile);
+        //Debug.Log(itemCode+" "+itemProfile);
         this.itemInventory.itemProfile = itemProfile;
-        this.itemInventory.itemCount = 1;
+        this.ResetItem();
     }
+
+    protected virtual void ResetItem(){
+        this.itemInventory.itemCount = 1;
+        this.itemInventory.upgradeLevel = 0;
+    }
+
 }
+
+

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class SpawnPoints : AkiBehaviour
+public class SpawnPoints : AkiBehaviour
 {
     [SerializeField] protected List<Transform> points;
 

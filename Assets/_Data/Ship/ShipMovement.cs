@@ -2,22 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipMovement : MonoBehaviour
+public class ShipMovement : AkiBehaviour
 {
    static InputManager instance;
    [SerializeField] protected Vector3 targetPos;
-   [SerializeField] protected float speed = 0.1f;
+   [SerializeField] protected float speed = 0.01f;
 
-   void FixedUpdate() {
-      this.GetTargetPos();
+   protected float distance;
+   [SerializeField] protected float minDistance = 1f;
+
+   protected virtual void FixedUpdate() {
       this.LookAtTarget();
       this.Moving();
    }
 
-   protected virtual void GetTargetPos(){
-      this.targetPos = InputManager.Instance.MouseWorldPos;
-      this.targetPos.z = 0; //cause this is 2D game so z = 0
-   }
    protected virtual void LookAtTarget(){
       Vector3 diff = this.targetPos - transform.parent.position;
       diff.Normalize();
@@ -25,6 +23,9 @@ public class ShipMovement : MonoBehaviour
       transform.parent.rotation = Quaternion.Euler(0f, 0f, rot_z);
    }
    protected virtual void Moving(){
+      this.distance = Vector3.Distance(transform.parent.position, targetPos);
+      if(this.distance < this.minDistance) return;
+
       Vector3 newPos = Vector3.Lerp(transform.parent.position, targetPos, this.speed);
       //Lerp(a,b,t) return point between a and b depend on t -- t=0 -> a, t=1 -> b, t=0.5 -> midpoint between a and b
       transform.parent.position = newPos;

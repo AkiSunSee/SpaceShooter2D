@@ -8,17 +8,6 @@ public class FollowTarget : AkiBehaviour
     
     [SerializeField] protected float FollowSpeed = 2f;
 
-    // protected override void LoadComponents(){
-    //     base.LoadComponents();
-    //     this.LoadTarget();
-    // }
-
-    // protected virtual void LoadTarget(){
-    //     if(this.target != null) return;
-    //     this.target = Transform.FindObjectOfType<Ship>(); 
-    //     Debug.Log(transform.name + ": LoadTarget", gameObject);
-    // }
-
     protected virtual void FixedUpdate() {
         this.Following();
     }

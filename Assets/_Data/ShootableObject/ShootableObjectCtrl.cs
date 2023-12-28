@@ -2,21 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JunkCtrl : AkiBehaviour
+public abstract class ShootableObjectCtrl : AkiBehaviour
 {
     [SerializeField] private Transform model;
-    public Transform Model {get => model;}
+    public Transform Model => model;
 
-    [SerializeField] protected JunkDespawn junkDespawn;
-    public JunkDespawn JunkDespawn {get => junkDespawn;}
+    [SerializeField] protected Despawn despawn;
+    public Despawn Despawn => despawn;
 
     [SerializeField] protected ShootableObjectSO shootableObjectSO;
-    public ShootableObjectSO ShootableObjectSO {get => shootableObjectSO;}
+    public ShootableObjectSO ShootableObjectSO => shootableObjectSO;
 
-    protected override void LoadComponents(){
+     protected override void LoadComponents(){
         base.LoadComponents();
         this.LoadModel();
-        this.LoadJunkDespawn();
+        this.LoadDespawn();
         this.LoadShootableObjectSO();
     }
 
@@ -26,16 +26,18 @@ public class JunkCtrl : AkiBehaviour
         Debug.LogWarning(transform.name+": LoadModel",gameObject);
     }
 
-    protected virtual void LoadJunkDespawn(){
-        if(this.junkDespawn != null) return;
-        this.junkDespawn = transform.GetComponentInChildren<JunkDespawn>();
-        Debug.LogWarning(transform.name+": LoadJunkDespawn",gameObject);
+    protected virtual void LoadDespawn(){
+        if(this.despawn != null) return;
+        this.despawn = transform.GetComponentInChildren<Despawn>();
+        Debug.LogWarning(transform.name+": LoadDespawn",gameObject);
     }
 
     protected virtual void LoadShootableObjectSO(){
         if(this.shootableObjectSO != null) return;
-        string resPath = "ShootableObject/Junk/"+ transform.name;
+        string resPath = "ShootableObject/"+this.GetObjectTypeString()+"/"+ transform.name;
         this.shootableObjectSO = Resources.Load<ShootableObjectSO>(resPath);
         Debug.LogWarning(transform.name+ " "+ resPath +": LoadShootableObjectSO",gameObject);
     }
+
+    protected abstract string GetObjectTypeString();
 }

@@ -33,9 +33,22 @@ public class Inventory : AkiBehaviour
         return true;
     }
 
+    public virtual ItemInventory GetEquipmentNotFullStack(ItemCode itemCode, int upgradeLevel){
+        foreach (ItemInventory item in this.items)
+        {
+            if(item.itemProfile.itemType != ItemType.Equipment) continue;
+            if ((item.itemProfile.itemCode == itemCode) && !this.IsFullStack(item) && item.upgradeLevel == upgradeLevel) return item;
+        }
+        return null;
+    }
     public virtual bool AddEquipment(ItemInventory itemInventory){
         if(this.IsInventoryFull()) return false;
-        this.items.Add(itemInventory);
+        ItemInventory newItemInventory = new ItemInventory();
+        newItemInventory = newItemInventory.Clone(itemInventory);
+        
+        ItemInventory itemExist = this.GetEquipmentNotFullStack(newItemInventory.itemProfile.itemCode, newItemInventory.upgradeLevel);
+        if(itemExist != null) itemExist.itemCount++;
+        else this.items.Add(newItemInventory);
         return true;
     }
 
@@ -142,6 +155,7 @@ public class Inventory : AkiBehaviour
         ItemInventory itemInventory = this.items.Find((item)=> item.itemProfile.itemCode == itemCode);
         return itemInventory;
     }
+
     /* public virtual bool AddItem(ItemCode itemCode, int addCount){
         ItemInventory itemInventory = this.GetItemByCode(itemCode);
         

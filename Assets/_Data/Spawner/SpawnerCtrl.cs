@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JunkSpawnerCtrl : AkiBehaviour
+public class SpawnerCtrl : AkiBehaviour
 {
-    [SerializeField] protected JunkSpawner junkSpawner;
-    public JunkSpawner JunkSpawner {get => junkSpawner;}
+    [SerializeField] protected Spawner spawner;
+    public Spawner Spawner => spawner;
 
     [SerializeField] protected SpawnPoints spawnPoints;
-    public SpawnPoints SpawnPoints {get => spawnPoints;}
+    public SpawnPoints SpawnPoints => spawnPoints;
+
     protected override void LoadComponents(){
         base.LoadComponents();
-        this.LoadJunkSpawner();
+        this.LoadSpawner();
         this.LoadSpawnPoints();
     }
 
@@ -21,9 +22,9 @@ public class JunkSpawnerCtrl : AkiBehaviour
         Debug.Log(transform.name + ": LoadSpawnPoints", gameObject);
     }
 
-    protected virtual void LoadJunkSpawner(){
-        if(this.junkSpawner != null) return;
-        this.junkSpawner = GetComponent<JunkSpawner>();
-        Debug.Log(transform.name + ": LoadJunkSpawner", gameObject);
+    protected virtual void LoadSpawner(){
+        if(this.spawner != null) return;
+        this.spawner = GetComponent<Spawner>();
+        Debug.Log(transform.name + ": LoadSpawner", gameObject);
     }
 }

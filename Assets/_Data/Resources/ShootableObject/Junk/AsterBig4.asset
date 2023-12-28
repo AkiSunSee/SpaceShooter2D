@@ -9,14 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c22b2c0c9def7ef4580fe3edc758e22c, type: 3}
-  m_Name: AsterHuge2
+  m_Script: {fileID: 11500000, guid: c1d49c4e2c3686647bb196ff842aa225, type: 3}
+  m_Name: AsterBig4
   m_EditorClassIdentifier: 
-  junkName: Junk
-  hpMax: 5
-  radius: 1.03
+  ShootableObjectName: Aster Big 4
+  shootableObjectType: 1
+  hpMax: 3
+  radius: 0.72
   dropList:
   - itemPSO: {fileID: 11400000, guid: ac7e0165f8a32d04298133f3241447bd, type: 2}
-    dropRate: 70000
+    dropRate: 0
     minDrop: 0
     maxDrop: 0
