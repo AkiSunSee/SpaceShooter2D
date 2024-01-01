@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipMovement : AkiBehaviour
+public class ObjMovement : AkiBehaviour
 {
    static InputManager instance;
    [SerializeField] protected Vector3 targetPos;

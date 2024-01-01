@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipShooting : MonoBehaviour
+public abstract class ObjShooting : AkiBehaviour
 {
     [SerializeField] protected bool shooting = false;
     [SerializeField] protected float shootDelay = 1f;
@@ -15,13 +15,12 @@ public class ShipShooting : MonoBehaviour
         this.Shooting();
     }
 
-    protected virtual void IsShooting(){
-        this.shooting = InputManager.Instance.IsRightMouseDown == 1;
-    }
+    protected abstract bool IsShooting();
+
     protected virtual void Shooting(){
         this.shootTimer += Time.fixedDeltaTime;
         if(this.shootTimer < shootDelay) return;
-        if(!this.shooting) return;
+        if(!IsShooting()) return;
         //if(InputManager.Instance.IsRightMouseDown == 0) return;
         Vector3 spawnPos = transform.parent.position;
         Quaternion rotation = transform.parent.rotation;

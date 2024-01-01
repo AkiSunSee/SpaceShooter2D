@@ -13,7 +13,7 @@ public abstract class ShootableObjectCtrl : AkiBehaviour
     [SerializeField] protected ShootableObjectSO shootableObjectSO;
     public ShootableObjectSO ShootableObjectSO => shootableObjectSO;
 
-     protected override void LoadComponents(){
+    protected override void LoadComponents(){
         base.LoadComponents();
         this.LoadModel();
         this.LoadDespawn();
