@@ -17,7 +17,7 @@ public class ShipFollowTarget : ObjMovement
     }
     
     protected virtual void GetTargetPos(){
-        this.targetPos = this.target.position;
+        this.targetPos = target.position;
         this.targetPos.z = 0; //cause this is 2D game so z = 0
     }
  

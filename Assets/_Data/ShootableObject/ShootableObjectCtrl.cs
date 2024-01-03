@@ -13,11 +13,15 @@ public abstract class ShootableObjectCtrl : AkiBehaviour
     [SerializeField] protected ShootableObjectSO shootableObjectSO;
     public ShootableObjectSO ShootableObjectSO => shootableObjectSO;
 
+    [SerializeField] protected ObjShooting objShooting;
+    public ObjShooting ObjShooting => objShooting;
+
     protected override void LoadComponents(){
         base.LoadComponents();
         this.LoadModel();
         this.LoadDespawn();
         this.LoadShootableObjectSO();
+        this.LoadObjShooting();
     }
 
     protected virtual void LoadModel(){
@@ -37,6 +41,12 @@ public abstract class ShootableObjectCtrl : AkiBehaviour
         string resPath = "ShootableObject/"+this.GetObjectTypeString()+"/"+ transform.name;
         this.shootableObjectSO = Resources.Load<ShootableObjectSO>(resPath);
         Debug.LogWarning(transform.name+ " "+ resPath +": LoadShootableObjectSO",gameObject);
+    }
+
+    protected virtual void LoadObjShooting(){
+        if(this.objShooting != null) return;
+        this.objShooting = transform.GetComponentInChildren<ObjShooting>();
+        Debug.LogWarning(transform.name+": LoadObjShooting",gameObject);
     }
 
     protected abstract string GetObjectTypeString();

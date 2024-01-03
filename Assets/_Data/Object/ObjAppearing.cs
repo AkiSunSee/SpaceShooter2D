@@ -11,6 +11,12 @@ public abstract class ObjAppearing : AkiBehaviour
     [SerializeField] protected bool appeared = false;
     public bool Appeared => appeared;
 
+    [SerializeField] protected List<IObjAppearObserver> observer = new List<IObjAppearObserver>();
+
+    protected override void Start(){
+        base.Start();
+        this.OnAppearStart();
+    }
     protected virtual void FixedUpdate(){
         this.Appearing();
     }
@@ -20,5 +26,28 @@ public abstract class ObjAppearing : AkiBehaviour
     public virtual void Appear(){
         this.appeared = true;
         this.isAppearing = false;
+        this.OnAppearFinish();
+    }
+
+    public virtual void AddObserver(IObjAppearObserver observer){
+        this.observer.Add(observer);
+    }
+
+    public virtual void RemoveObserver(IObjAppearObserver observer){
+        this.observer.Remove(observer);
+    }
+
+    protected virtual void OnAppearStart(){
+        foreach (IObjAppearObserver observer in this.observer)
+        {
+            observer.OnAppearStart();
+        }
+    }
+
+    protected virtual void OnAppearFinish(){
+        foreach (IObjAppearObserver observer in this.observer)
+        {
+            observer.OnAppearFinish();
+        }
     }
 }

@@ -8,20 +8,13 @@ public class ObjMovement : AkiBehaviour
    [SerializeField] protected Vector3 targetPos;
    [SerializeField] protected float speed = 0.01f;
 
-   protected float distance;
+   [SerializeField] protected float distance;
    [SerializeField] protected float minDistance = 1f;
 
    protected virtual void FixedUpdate() {
-      this.LookAtTarget();
       this.Moving();
    }
 
-   protected virtual void LookAtTarget(){
-      Vector3 diff = this.targetPos - transform.parent.position;
-      diff.Normalize();
-      float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-      transform.parent.rotation = Quaternion.Euler(0f, 0f, rot_z);
-   }
    protected virtual void Moving(){
       this.distance = Vector3.Distance(transform.parent.position, targetPos);
       if(this.distance < this.minDistance) return;

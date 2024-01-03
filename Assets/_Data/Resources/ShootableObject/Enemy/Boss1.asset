@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShootableObjectName: Shootable Object
   shootableObjectType: 3
-  hpMax: 10
+  hpMax: 15
   radius: 0.48
   dropList:
   - itemPSO: {fileID: 11400000, guid: ac7e0165f8a32d04298133f3241447bd, type: 2}
