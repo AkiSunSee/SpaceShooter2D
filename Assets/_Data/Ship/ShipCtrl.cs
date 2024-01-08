@@ -2,20 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipCtrl : AkiBehaviour
+public class ShipCtrl : AbilityObjectCtrl
 {
-    private static ShipCtrl instance;
-    public static ShipCtrl Instance => instance;
+    [Header("Ship")]
 
     [SerializeField] public Inventory inventory;
     public Inventory Inventory => inventory;
 
-    protected override void Awake(){
-        base.Awake();
-        if(ShipCtrl.instance != null) Debug.LogError("Only 1 ShipCtrl allow to exist");
-        ShipCtrl.instance = this;
+    protected override string GetObjectTypeString(){
+        return ShootableObjectType.Ship.ToString();
     }
-    
+
     protected override void LoadComponents(){
         base.LoadComponents();
         this.LoadInventory();

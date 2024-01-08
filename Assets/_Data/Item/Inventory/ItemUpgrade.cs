@@ -19,7 +19,7 @@ public class ItemUpgrade : InventoryAbstract
     }
 
     public virtual bool UpgradeItem(int itemIndex){
-        Debug.Log("Upgrading...");
+        //Debug.Log("Upgrading...");
         if(this.inventory == null) return false;
 
         if(itemIndex >= this.inventory.Items.Count) return false;
@@ -33,7 +33,7 @@ public class ItemUpgrade : InventoryAbstract
 
         this.DeductIngredients(upgradeLevels, itemInventory.upgradeLevel);
         itemInventory.upgradeLevel++;
-        Debug.Log("Upgrade item: "+itemInventory.itemProfile.itemCode+" to level "+itemInventory.upgradeLevel + " success");
+        //Debug.Log("Upgrade item: "+itemInventory.itemProfile.itemCode+" to level "+itemInventory.upgradeLevel + " success");
 
         return true;
     }

@@ -16,12 +16,22 @@ public abstract class ShootableObjectCtrl : AkiBehaviour
     [SerializeField] protected ObjShooting objShooting;
     public ObjShooting ObjShooting => objShooting;
 
+    [SerializeField] protected Spawner spawner;
+    public Spawner Spawner => spawner;
+
     protected override void LoadComponents(){
         base.LoadComponents();
         this.LoadModel();
         this.LoadDespawn();
         this.LoadShootableObjectSO();
         this.LoadObjShooting();
+        this.LoadSpawner();
+    }
+
+    protected virtual void LoadSpawner(){
+        if(this.spawner != null) return;
+        this.spawner = transform.parent?.parent?.GetComponent<Spawner>();
+        Debug.LogWarning(transform.name+": LoadSpawner",gameObject);
     }
 
     protected virtual void LoadModel(){

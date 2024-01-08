@@ -46,7 +46,8 @@ public class AbilitySummonEnemy : AbilitySummon
 
     protected override Transform Summon(){
         Transform minion = base.Summon();
-        //minion.parent = this.abilities.AbilityObjectCtrl.transform;
+        minion.parent = this.abilities.AbilityObjectCtrl.transform;
+        //to keep minion fly the same direction with parent direction
         this.minions.Add(minion);
         return minion;
     }

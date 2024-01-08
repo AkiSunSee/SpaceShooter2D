@@ -14,7 +14,7 @@ public class ObjLookAtPlayer : ObjLookAtTarget
     protected virtual void LoadPlayer(){
         if(this.player != null) return;
         this.player = GameObject.FindGameObjectWithTag("Player");
-        Debug.Log(transform.name + ": LoadPlayer", gameObject);
+        //Debug.Log(transform.name + ": LoadPlayer", gameObject);
         this.SetTarget(this.player.transform);
     }
 }

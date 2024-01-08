@@ -18,7 +18,7 @@ public abstract class Spawner : AkiBehaviour
     protected virtual void LoadHolder(){
         if(this.holder != null) return;
         this.holder = transform.Find("Holder");
-        Debug.Log(transform.name + ": LoadHolder",gameObject);
+        Debug.LogWarning(transform.name + ": LoadHolder",gameObject);
     }
 
     protected virtual void LoadPrefabs(){
@@ -29,6 +29,8 @@ public abstract class Spawner : AkiBehaviour
             this.prefabs.Add(prefab);
         }
         this.HidePrefabs();
+
+        Debug.LogWarning(transform.name+": LoadPrefabs",gameObject);
     }
 
     protected virtual void HidePrefabs(){
@@ -85,5 +87,10 @@ public abstract class Spawner : AkiBehaviour
     public virtual Transform GetRandomPrefab(){
         int random = Random.Range(0,this.prefabs.Count);
         return this.prefabs[random];
+    }
+
+    public virtual Transform Hold(Transform obj){
+        obj.parent = this.holder;
+        return transform;
     }
 }
