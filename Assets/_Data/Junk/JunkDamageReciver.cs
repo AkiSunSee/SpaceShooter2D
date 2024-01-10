@@ -28,7 +28,6 @@ public class JunkDamageReciver : DamageReciver
         this.OnDeadFX();
         this.DropOnDead();
         this.junkCtrl.JunkDespawn.DespawnObj();
-        
     }
 
     protected virtual void DropOnDead(){

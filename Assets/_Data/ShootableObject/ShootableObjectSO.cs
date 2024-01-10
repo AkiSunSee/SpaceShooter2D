@@ -9,5 +9,5 @@ public class ShootableObjectSO : ScriptableObject {
     public ShootableObjectType shootableObjectType;
     public int hpMax = 2;
     public float radius = 0.19f;
-    public List<DropRate> dropList;
+    public List<ItemDropRate> dropList;
 }
