@@ -46,12 +46,12 @@ public class ItemDropSpawner : Spawner
                     droppedItems.Add(item);
                 }while(itemRate>=100);
             }
-            Debug.Log("==================================");
-            Debug.Log("rate: "+rate);
-            Debug.Log("item.dropRate: "+item.dropRate);
-            Debug.Log("gameDroprate: "+GameDropRate());
-            Debug.Log("itemRate: "+itemRate);
-            Debug.Log("itemDropMore: "+itemDropMore);
+            // Debug.Log("==================================");
+            // Debug.Log("rate: "+rate);
+            // Debug.Log("item.dropRate: "+item.dropRate);
+            // Debug.Log("gameDroprate: "+GameDropRate());
+            // Debug.Log("itemRate: "+itemRate);
+            // Debug.Log("itemDropMore: "+itemDropMore);
             if(rate <= itemRate){
                 droppedItems.Add(item);
             }

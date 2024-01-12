@@ -27,6 +27,10 @@ public abstract class BaseAbility : AkiBehaviour
         this.Timing();
     }
 
+    protected virtual void Update(){
+        //
+    }
+
     protected virtual void Timing(){
         if(this.isReady) return;    
         this.timer += Time.fixedDeltaTime;
