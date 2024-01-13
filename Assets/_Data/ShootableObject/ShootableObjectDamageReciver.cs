@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootableObjectDamageReciver : DamageReciver
+public class ShootableObjectDamageReciver : DamageReceiver
 {
     [Header("Shootable Object")]
     [SerializeField] protected ShootableObjectCtrl shootableObjectCtrl;

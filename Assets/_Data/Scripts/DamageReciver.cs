@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SphereCollider))]
-public abstract class DamageReciver : AkiBehaviour
+public abstract class DamageReceiver : AkiBehaviour
 {
     [Header("Damage Reciver")]
     [SerializeField] protected SphereCollider sphereCollider;
     [SerializeField] protected int hp = 1;
+    public int HP => hp;
     [SerializeField] protected int hpMax  = 10;
+    public int HpMax => hpMax;
     [SerializeField] protected bool isDead = false;
 
     protected override void OnEnable() {
@@ -47,7 +49,7 @@ public abstract class DamageReciver : AkiBehaviour
         this.CheckIsDead();
     }
 
-    protected virtual bool IsDead(){
+    public virtual bool IsDead(){
         return this.hp <= 0;
     }
 

@@ -17,7 +17,7 @@ public class BulletDamageSender : DamageSender
         Debug.Log(transform.name + ": LoadBulletCtrl", gameObject);
     }
 
-    public override void Send(DamageReciver dmgReciver){
+    public override void Send(DamageReceiver dmgReciver){
         base.Send(dmgReciver);
         this.DestroyBullet();
     }

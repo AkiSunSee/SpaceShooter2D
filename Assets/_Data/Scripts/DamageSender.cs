@@ -7,14 +7,14 @@ public class DamageSender : AkiBehaviour
     [SerializeField] protected int damage = 1;
 
     public virtual void Send(Transform obj){
-        DamageReciver dmgReciver = obj.GetComponentInChildren<DamageReciver>();
-        if (dmgReciver == null) return;
-        this.Send(dmgReciver);
+        DamageReceiver dmgReceiver = obj.GetComponentInChildren<DamageReceiver>();
+        if (dmgReceiver == null) return;
+        this.Send(dmgReceiver);
         this.createFXImpact();
     }
 
-    public virtual void Send(DamageReciver dmgReciver){
-        dmgReciver.Deduct(this.damage);
+    public virtual void Send(DamageReceiver dmgReceiver){
+        dmgReceiver.Deduct(this.damage);
     }
 
     protected virtual void createFXImpact(){

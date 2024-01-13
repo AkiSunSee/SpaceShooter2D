@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JunkDamageReciver : DamageReciver
+public class JunkDamageReciver : DamageReceiver
 {
     [Header("Junk")]
     [SerializeField] protected JunkCtrl junkCtrl;

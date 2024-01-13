@@ -41,4 +41,5 @@ public class ObjAppearWithoutShoot : ShootableObjectAbstract, IObjAppearObserver
 
         this.shootableObjectCtrl.Spawner.Hold(transform.parent);
     }
+
 }

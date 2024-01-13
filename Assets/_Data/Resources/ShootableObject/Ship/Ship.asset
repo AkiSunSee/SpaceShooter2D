@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShootableObjectName: Ship
   shootableObjectType: 4
-  hpMax: 100
-  radius: 0.19
+  hpMax: 10
+  radius: 0.28
   dropList: []

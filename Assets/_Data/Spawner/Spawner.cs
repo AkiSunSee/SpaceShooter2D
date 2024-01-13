@@ -53,7 +53,7 @@ public abstract class Spawner : AkiBehaviour
         Transform newPrefab = this.GetObjFromPool(prefab);
         newPrefab.SetPositionAndRotation(spawnPos, rotation);
 
-        newPrefab.parent = this.holder;
+        newPrefab.SetParent(this.holder);
         this.spawnedCount++;
         return newPrefab;
     }
@@ -93,4 +93,5 @@ public abstract class Spawner : AkiBehaviour
         obj.parent = this.holder;
         return transform;
     }
+
 }
