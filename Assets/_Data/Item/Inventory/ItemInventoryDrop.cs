@@ -5,13 +5,23 @@ using UnityEngine;
 public class ItemInventoryDrop : InventoryAbstract
 {
     //[Header("Item Drop")]
+
+    [SerializeField] protected static ItemInventoryDrop instance;
+    public static ItemInventoryDrop Instance => instance;
     
     protected override void Start(){
         base.Start();   
-        //Invoke(nameof(this.Test),10);
+        Invoke(nameof(this.Drop),10);
     }
 
-    protected virtual void Test(){
+    protected override void Awake()
+    {
+        base.Awake();
+        if(ItemInventoryDrop.instance!= null) Debug.LogWarning("Only 1 ItemInventoryDrop can exist");
+        ItemInventoryDrop.instance = this;
+    }
+
+    public virtual void Drop(){
         Vector3 dropPos = transform.parent.position;
         dropPos.x +=5;
 

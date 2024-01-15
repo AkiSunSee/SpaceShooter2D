@@ -15,13 +15,14 @@ public class InputManager : AkiBehaviour
 
     protected Vector4 direction;
     public Vector4 Direction => direction;
+
     protected override void Awake() {
         if(InputManager.instance != null) Debug.LogError("Only 1 InputManager allow to exist");
         InputManager.instance = this;
     }
     private void Update() {
         this.checkMouseDown();
-        this.GetDirectionByKeyDown();
+        this.GetKeyDown();
     }
     void FixedUpdate() {
         this.GetMousePos();
@@ -45,5 +46,17 @@ public class InputManager : AkiBehaviour
         // if (this.direction.y == 1) Debug.Log("Right");
         // if (this.direction.z == 1) Debug.Log("Up");
         // if (this.direction.w == 1) Debug.Log("Down");
+    }
+
+    protected virtual void GetKeyDown(){
+        if(Input.GetKeyDown(KeyCode.I)){
+            UIInventory.Instance.Toggle();
+            return;
+        }
+        if(Input.GetKeyDown(KeyCode.R)){
+            ItemInventoryDrop.Instance.Drop();
+            return;
+        }
+        GetDirectionByKeyDown();
     }
 }

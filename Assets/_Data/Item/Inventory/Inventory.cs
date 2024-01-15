@@ -1,19 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class Inventory : AkiBehaviour
 {
-    [SerializeField] protected int maxSlot = 70;
+    [SerializeField] protected int maxSlot = 100;
     [SerializeField] protected int curSlot = 0;
     [SerializeField] protected List<ItemInventory> items;
     public List<ItemInventory> Items => items;
 
     protected override void Start() {
         base.Start();
-        // this.AddItem(ItemCode.GoldenSword,1);
-        // this.AddItem(ItemCode.IronOre,15);
-        // this.AddItem(ItemCode.GoldOre,60);
+        this.AddItem(ItemCode.GoldenSword,1);
+        this.AddItem(ItemCode.IronOre,15);
+        this.AddItem(ItemCode.GoldOre,60);
     }
     
     public virtual bool IsInventoryFull(){
@@ -45,6 +46,8 @@ public class Inventory : AkiBehaviour
         if(this.IsInventoryFull()) return false;
         ItemInventory newItemInventory = new ItemInventory();
         newItemInventory = newItemInventory.Clone(itemInventory);
+
+        //ItemInventory newItemInventory = itemInventory.Clone();
         
         ItemInventory itemExist = this.GetEquipmentNotFullStack(newItemInventory.itemProfile.itemCode, newItemInventory.upgradeLevel);
         if(itemExist != null) itemExist.itemCount++;
@@ -119,6 +122,7 @@ public class Inventory : AkiBehaviour
             itemCount = 0,
             maxStack = itemPSO.defaultMaxStack
         };
+        itemInventory.SetItemID(ItemInventory.RandomID());
         return itemInventory;
     }
     

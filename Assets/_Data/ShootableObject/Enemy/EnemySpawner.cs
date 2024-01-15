@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : ShootableObjectSpawner
+public class EnemySpawner : ShootableObjectSpawnerWithHPBar
 {
     private static EnemySpawner instance;
     public static EnemySpawner Instance { get => instance; }

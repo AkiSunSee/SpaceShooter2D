@@ -28,6 +28,7 @@ public class ItemCtrl : AkiBehaviour
 
     public virtual void SetItemInventory(ItemInventory itemInventory){
         this.itemInventory = this.itemInventory.Clone(itemInventory);
+        //this.itemInventory = itemInventory.Clone();
     }
 
     protected virtual void LoadItemInventory(){

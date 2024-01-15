@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MotherShipSpawner : ShootableObjectSpawner
+public class MotherShipSpawner : ShootableObjectSpawnerWithHPBar
 {
     private static MotherShipSpawner instance;
     public static MotherShipSpawner Instance { get => instance; }

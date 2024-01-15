@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootableObjectSpawner : Spawner
+public class ShootableObjectSpawnerWithHPBar : Spawner
 {   
     public override Transform Spawn(Transform prefab, Vector3 spawnPos, Quaternion rotation){
 
