@@ -13,7 +13,7 @@ public class Inventory : AkiBehaviour
     protected override void Start() {
         base.Start();
         this.AddItem(ItemCode.GoldenSword,1);
-        this.AddItem(ItemCode.IronOre,15);
+        this.AddItem(ItemCode.IronOre,20);
         this.AddItem(ItemCode.GoldOre,60);
     }
     

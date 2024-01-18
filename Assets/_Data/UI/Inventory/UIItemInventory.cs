@@ -15,10 +15,14 @@ public class UIItemInventory : AkiBehaviour
     [SerializeField] protected Text itemCount;
     public Text ItemCount => itemCount;
 
+    [SerializeField] protected Image itemImage;
+    public Image ItemImage => itemImage;
+
     protected override void LoadComponents(){
         base.LoadComponents();
         this.LoadItemName();
         this.LoadItemCount();
+        this.LoadItemImage();
     }
 
     protected virtual void LoadItemName(){
@@ -33,9 +37,16 @@ public class UIItemInventory : AkiBehaviour
         Debug.LogWarning(transform.name+": LoadItemCount",gameObject);
     }
 
+    protected virtual void LoadItemImage(){
+        if(this.itemImage != null) return;
+        this.itemImage = transform.Find("ItemImage").GetComponent<Image>();
+        Debug.LogWarning(transform.name+": LoadItemImage",gameObject);
+    }
+
     public virtual void ShowItem(ItemInventory item){
         this.itemInventory = item;
         this.itemName.text = item.itemProfile.itemName;
         this.itemCount.text = item.itemCount.ToString();
+        this.itemImage.sprite = item.itemProfile.sprite;
     }
 }

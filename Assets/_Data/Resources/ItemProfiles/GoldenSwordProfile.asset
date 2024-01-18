@@ -16,6 +16,7 @@ MonoBehaviour:
   itemType: 2
   itemName: Golden Sword
   defaultMaxStack: 3
+  sprite: {fileID: 21300000, guid: b55755872476ac94f81ae35d56f19a7e, type: 3}
   upgradeLevels:
   - ingredients:
     - itemProfile: {fileID: 11400000, guid: 8108f82699d57ba4a82b73aeb7e28cc0, type: 2}

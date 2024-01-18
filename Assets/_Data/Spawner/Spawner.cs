@@ -72,6 +72,8 @@ public abstract class Spawner : AkiBehaviour
     }
 
     public virtual void Despawn(Transform obj){
+        if(this.poolObjs.Contains(obj)) return;
+
         this.poolObjs.Add(obj);
         this.spawnedCount--;
         obj.gameObject.SetActive(false);

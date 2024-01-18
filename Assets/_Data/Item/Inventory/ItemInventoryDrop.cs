@@ -11,7 +11,7 @@ public class ItemInventoryDrop : InventoryAbstract
     
     protected override void Start(){
         base.Start();   
-        Invoke(nameof(this.Drop),10);
+        //Invoke(nameof(this.Drop),10);
     }
 
     protected override void Awake()
