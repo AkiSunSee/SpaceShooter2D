@@ -13,6 +13,9 @@ public class PlayerCtrl : AkiBehaviour
     [SerializeField] protected PlayerPickup playerPickup;
     public PlayerPickup PlayerPickup => playerPickup;
 
+    [SerializeField] protected PlayerAbilities playerAbilities;
+    public PlayerAbilities PlayerAbilities => playerAbilities;
+
     protected override void Awake(){
         base.Awake();
         if( PlayerCtrl.instance != null ) Debug.LogError("Only 1 PlayerCtrl allow to exist");
@@ -22,11 +25,18 @@ public class PlayerCtrl : AkiBehaviour
     protected override void LoadComponents(){
         base.LoadComponents();
         this.LoadPlayerPickup();
+        this.LoadPlayerAbilities();
     }
 
     protected virtual void LoadPlayerPickup(){
         if(this.playerPickup != null ) return;
         this.playerPickup = transform.GetComponentInChildren<PlayerPickup>();
         Debug.Log(transform.name + " LoadPlayerPickup", gameObject);
+    }
+
+    protected virtual void LoadPlayerAbilities(){
+        if(this.playerAbilities != null ) return;
+        this.playerAbilities = transform.GetComponentInChildren<PlayerAbilities>();
+        Debug.Log(transform.name + " LoadPlayerAbilities", gameObject);
     }
 }
