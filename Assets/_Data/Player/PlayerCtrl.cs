@@ -39,4 +39,10 @@ public class PlayerCtrl : AkiBehaviour
         this.playerAbilities = transform.GetComponentInChildren<PlayerAbilities>();
         Debug.Log(transform.name + " LoadPlayerAbilities", gameObject);
     }
+
+    public virtual void SetCurrentShip(Transform ship){
+        ShipCtrl shipCtrl = ship.GetComponent<ShipCtrl>();
+        if(shipCtrl == null) return;
+        this.currentShip = shipCtrl;
+    }
 }

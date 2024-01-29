@@ -19,6 +19,7 @@ public class OnPressAlpha : AkiBehaviour
     }
 
     protected virtual void Press(int alpha){
+        Debug.Log(alpha);
         ItemSlot itemSlot = UIHotKeyCtrl.Instance.itemSlots[alpha];
 
         Pressable pressable = itemSlot.GetComponentInChildren<Pressable>();
