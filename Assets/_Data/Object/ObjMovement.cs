@@ -23,4 +23,5 @@ public class ObjMovement : AkiBehaviour
       //Lerp(a,b,t) return point between a and b depend on t -- t=0 -> a, t=1 -> b, t=0.5 -> midpoint between a and b
       transform.parent.position = newPos;
    }
+
 }

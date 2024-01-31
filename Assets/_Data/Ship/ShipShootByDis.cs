@@ -13,6 +13,12 @@ public class ShipShootByDis : ObjShooting
         this.target = target;
     }
 
+    protected override void LoadComponents()
+    {
+        base.LoadComponents();
+        this.SetTarget(PlayerCtrl.Instance.CurrentShip.transform);
+    }
+
     protected override bool IsShooting(){
         this.distance = Vector3.Distance(target.position, transform.parent.position);
         this.shooting = (distance <= shootDis);

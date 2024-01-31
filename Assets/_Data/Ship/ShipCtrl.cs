@@ -23,4 +23,5 @@ public class ShipCtrl : AbilityObjectCtrl
         this.inventory = transform.GetComponentInChildren<Inventory>();
         Debug.Log(transform.name + " LoadInventory",gameObject);
     }
+
 }

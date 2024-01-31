@@ -8,5 +8,11 @@ public class PressableAbility : Pressable
     public override void Pressed()
     {
         PlayerCtrl.Instance.PlayerAbilities.Active(abitity);
+        Cooldown cooldown = this.transform.parent.GetComponentInChildren<Cooldown>();
+        if(cooldown == null) return;
+        if(cooldown.GetCoolDownStatus()) return;
+        float time = PlayerCtrl.Instance.PlayerAbilities.GetTimedelayOfAbility(abitity);
+        Debug.Log(time);
+        cooldown.StartCoolDown(time);
     }
 }

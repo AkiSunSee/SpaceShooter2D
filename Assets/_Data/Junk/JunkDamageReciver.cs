@@ -15,7 +15,6 @@ public class JunkDamageReciver : DamageReceiver
 
     protected virtual void LoadDataShootableObjectSO(){
         this.hpMax = this.junkCtrl.ShootableObjectSO.hpMax;
-        this.sphereCollider.radius = this.junkCtrl.ShootableObjectSO.radius; 
     }
     
     protected virtual void LoadJunkCtrl(){

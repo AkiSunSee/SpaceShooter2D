@@ -6,7 +6,7 @@ public enum AbilitiesCode
     NoAbility = 0,
 
     Missle = 1,
-
+    Specialized =2,
 }
 
 public class AbilitiesCodeParser{

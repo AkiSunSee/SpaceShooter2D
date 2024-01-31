@@ -16,8 +16,11 @@ MonoBehaviour:
   shootableObjectType: 2
   hpMax: 3
   radius: 0.33
+  speed: 0.02
+  shootingSpeed: 2
+  collectItemsRating: 1
+  attack: 1
+  sprite: {fileID: 21300000, guid: 39491a1553a1fad4790d59945f8a35fa, type: 3}
   dropList:
   - itemPSO: {fileID: 11400000, guid: 8108f82699d57ba4a82b73aeb7e28cc0, type: 2}
-    dropRate: 0
-    minDrop: 0
-    maxDrop: 0
+    dropRate: 25000

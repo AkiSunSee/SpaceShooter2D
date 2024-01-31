@@ -42,4 +42,8 @@ public abstract class BaseAbility : AkiBehaviour
         this.isReady = false;
         this.timer = 0;
     }
+
+    public virtual float GetTimeDalay(){
+        return this.delay;
+    }
 }

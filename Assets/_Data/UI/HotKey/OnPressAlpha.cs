@@ -19,10 +19,10 @@ public class OnPressAlpha : AkiBehaviour
     }
 
     protected virtual void Press(int alpha){
-        Debug.Log(alpha);
-        ItemSlot itemSlot = UIHotKeyCtrl.Instance.itemSlots[alpha];
+        //Debug.Log(alpha);
+        HotKeySlot hotKeySlot = UIHotKeyCtrl.Instance.hotKeySlots[alpha];
 
-        Pressable pressable = itemSlot.GetComponentInChildren<Pressable>();
+        Pressable pressable = hotKeySlot.GetComponentInChildren<Pressable>();
         if(pressable == null) return;
         pressable.Pressed();
     }

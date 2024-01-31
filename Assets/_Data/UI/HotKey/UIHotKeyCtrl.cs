@@ -8,7 +8,7 @@ public class UIHotKeyCtrl : AkiBehaviour
     private static UIHotKeyCtrl instance;
     public static UIHotKeyCtrl Instance => instance;
 
-    [SerializeField] public List<ItemSlot> itemSlots;
+    [SerializeField] public List<HotKeySlot> hotKeySlots;
 
     protected override void Awake()
     {
@@ -20,13 +20,13 @@ public class UIHotKeyCtrl : AkiBehaviour
     protected override void LoadComponents()
     {
         base.LoadComponents();
-        this.LoadItemSlots();
+        this.LoadHotKeySlot();
     }
 
-    protected virtual void LoadItemSlots(){
-        if(this.itemSlots.Count>0) return;
-        ItemSlot[] arraySlots = GetComponentsInChildren<ItemSlot>();
-        this.itemSlots.AddRange(arraySlots);
-        Debug.Log(transform.name+": LoadItemSlots",gameObject);
+    protected virtual void LoadHotKeySlot(){
+        if(this.hotKeySlots.Count>0) return;
+        HotKeySlot[] arraySlots = GetComponentsInChildren<HotKeySlot>();
+        this.hotKeySlots.AddRange(arraySlots);
+        Debug.Log(transform.name+": LoadHotKeySlot",gameObject);
     }
 }

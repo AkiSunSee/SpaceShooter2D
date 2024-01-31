@@ -16,4 +16,8 @@ MonoBehaviour:
   shootableObjectType: 2
   hpMax: 20
   radius: 0.77
+  speed: 0.01
+  shootingSpeed: 3
+  collectItemsRating: 2
+  attack: 1
   dropList: []

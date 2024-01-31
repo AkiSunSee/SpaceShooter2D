@@ -8,7 +8,7 @@ public class ItemInventoryDrop : InventoryAbstract
 
     [SerializeField] protected static ItemInventoryDrop instance;
     public static ItemInventoryDrop Instance => instance;
-    
+
     protected override void Start(){
         base.Start();   
         //Invoke(nameof(this.Drop),10);

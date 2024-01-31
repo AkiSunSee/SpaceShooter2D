@@ -13,6 +13,10 @@ public class DamageSender : AkiBehaviour
         this.createFXImpact();
     }
 
+    public virtual void SetDamage(int newDamage){
+        this.damage = newDamage;
+    }
+
     public virtual void Send(DamageReceiver dmgReceiver){
         dmgReceiver.Deduct(this.damage);
     }

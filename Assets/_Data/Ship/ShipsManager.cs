@@ -38,9 +38,18 @@ public class ShipsManager : AkiBehaviour
         ShipCode shipCode = ShipCodeParser.FromString(GameCtrl.Instance.SelectedShipName);
         Transform ship = ShipSpawner.Instance.Spawn(shipCode);
         ship.gameObject.SetActive(true);
+        this.SetCamareFollow(ship);
+        this.SetGameData(ship);
+    }
+
+    protected virtual void SetCamareFollow(Transform ship){
         GameObject CameraHolder = GameObject.Find("CameraHolder");
         FollowTarget followTarget = CameraHolder.transform.GetComponent<FollowTarget>();
         followTarget.SetTarget(ship);
+    }
+
+    protected virtual void SetGameData(Transform ship){
         PlayerCtrl.Instance.SetCurrentShip(ship);
+        ItemDropSpawner.Instance.SetPlayerDropRate(ship.GetComponent<ShipCtrl>().ShootableObjectSO.collectItemsRating);
     }
 }

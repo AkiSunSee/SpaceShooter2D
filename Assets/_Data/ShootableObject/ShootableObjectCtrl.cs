@@ -22,6 +22,9 @@ public abstract class ShootableObjectCtrl : AkiBehaviour
     [SerializeField] protected DamageReceiver damageReceiver;
     public DamageReceiver DamageReceiver => damageReceiver;
 
+    [SerializeField] protected ObjMovement objMovement;
+    public ObjMovement ObjMovement => objMovement;
+
     protected override void LoadComponents(){
         base.LoadComponents();
         this.LoadModel();
@@ -30,6 +33,13 @@ public abstract class ShootableObjectCtrl : AkiBehaviour
         this.LoadObjShooting();
         this.LoadSpawner();
         this.LoadDamageReceiver();
+        this.LoadObjMovement();
+    }
+
+    protected virtual void LoadObjMovement(){
+        if(this.objMovement != null) return;
+        this.objMovement = transform.GetComponentInChildren<ObjMovement>();
+        Debug.LogWarning(transform.name+": LoadObjMovement",gameObject);
     }
 
     protected virtual void LoadDamageReceiver(){

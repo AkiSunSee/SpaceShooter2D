@@ -16,8 +16,12 @@ MonoBehaviour:
   shootableObjectType: 1
   hpMax: 3
   radius: 0.7
+  speed: 1
+  shootingSpeed: 1
+  collectItemsRating: 2
+  attack: 1
   dropList:
   - itemPSO: {fileID: 11400000, guid: ac7e0165f8a32d04298133f3241447bd, type: 2}
-    dropRate: 15000
+    dropRate: 150000
   - itemPSO: {fileID: 11400000, guid: 8108f82699d57ba4a82b73aeb7e28cc0, type: 2}
     dropRate: 75000

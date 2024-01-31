@@ -8,11 +8,15 @@ public class ItemDropSpawner : Spawner
     public static ItemDropSpawner Instance => _instance;
 
     [SerializeField] protected float gameDropRate = 1;
-
+    [SerializeField] protected float playerDropRate = 1;
     protected override void Awake() {
         base.Awake();
         if(ItemDropSpawner._instance != null) Debug.LogError("Only 1 ItemDropSpawner allow to exist");
         ItemDropSpawner._instance = this;
+    }
+
+    public virtual void SetPlayerDropRate(float newPlayerDropRate){
+        this.playerDropRate = newPlayerDropRate;
     }
 
     public virtual List<ItemDropRate> Drop(List<ItemDropRate> dropList, Vector3 pos, Quaternion rot){
@@ -60,7 +64,7 @@ public class ItemDropSpawner : Spawner
     }
 
     protected virtual float GameDropRate(){
-        return this.gameDropRate;
+        return this.gameDropRate*playerDropRate;
     }
 
     public virtual Transform DropFromInventory(ItemInventory itemInventory, Vector3 pos, Quaternion rot){
