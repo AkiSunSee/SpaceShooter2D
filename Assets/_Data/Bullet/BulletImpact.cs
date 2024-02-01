@@ -35,4 +35,8 @@ public class BulletImpact : BulletAbstract
         this.BulletCtrl.DmgSender.Send(other.transform);        
     }
 
+    public virtual void SetSphereRadius(float radius){
+        this.sphereCollider.radius = radius;
+    }
+
 }

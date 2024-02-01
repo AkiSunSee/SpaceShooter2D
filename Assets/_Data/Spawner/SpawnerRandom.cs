@@ -20,33 +20,38 @@ public class SpawnerRandom : AkiBehaviour
     }
 
     protected override void Start() {
-        // for(int i=0;i<2;i++){
-        //     Transform ranPoint = spawnerCtrl.SpawnPoints.GetRandom();
-        //     Vector3 pos = ranPoint.position;
-        //     Quaternion rot = transform.rotation;
-        //     Transform random = spawnerCtrl.Spawner.GetRandomPrefab();
-        //     Transform obj = spawnerCtrl.Spawner.Spawn(random, pos, rot);
-        //     spawnerCtrl.Spawner.Despawn(obj);
-        // }
+        Invoke(nameof(this.ReadySample),5f);
+    }
+
+    protected virtual void ReadySample(){
+        foreach(Transform transform in this.spawnerCtrl.Spawner.GetPrefabsList()){
+            Transform obj = this.SpawnObj(transform);
+            this.spawnerCtrl.Spawner.Despawn(obj);
+        }
         StartCoroutine(SpawnRoutine());
     }
 
     protected virtual IEnumerator SpawnRoutine() {
         while (true) {
+            yield return new WaitForSeconds(randomDelay);
             if (!RandomReachLimit()) {
-                Transform ranPoint = spawnerCtrl.SpawnPoints.GetRandom();
-                Vector3 pos = ranPoint.position;
-                Quaternion rot = transform.rotation;
                 Transform random = spawnerCtrl.Spawner.GetRandomPrefab();
-                Transform obj = spawnerCtrl.Spawner.Spawn(random, pos, rot);
+                Transform obj = this.SpawnObj(random);
                 obj.gameObject.SetActive(true);
             }
-            yield return new WaitForSeconds(randomDelay);
         }
     }
 
     protected virtual bool RandomReachLimit() {
         int current = spawnerCtrl.Spawner.SpawnedCount;
         return current >= randomLimit;
+    }
+
+    protected virtual Transform SpawnObj(Transform sample){
+        Transform ranPoint = this.spawnerCtrl.SpawnPoints.GetRandom();
+        Vector3 pos = ranPoint.position;
+        Quaternion rot = transform.rotation;
+        Transform obj = this.spawnerCtrl.Spawner.Spawn(sample, pos, rot);
+        return obj;
     }
 }

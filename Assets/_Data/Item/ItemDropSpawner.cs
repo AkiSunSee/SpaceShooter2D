@@ -27,7 +27,7 @@ public class ItemDropSpawner : Spawner
         foreach (ItemDropRate item in dropItems)
         {
             ItemCode itemCode = item.itemPSO.itemCode;
-            Transform itemDrop = this.Spawn(itemCode.ToString(), pos, rot);
+            Transform itemDrop = this.Spawn(itemCode.ToString(), this.RandomNearDropPos(pos), rot);
             if(itemDrop == null) continue;
             itemDrop.gameObject.SetActive(true);
         }
@@ -75,5 +75,12 @@ public class ItemDropSpawner : Spawner
         ItemCtrl itemCtrl = itemDrop.GetComponent<ItemCtrl>();
         itemCtrl.SetItemInventory(itemInventory);
         return itemDrop;
+    }
+
+    protected virtual Vector3 RandomNearDropPos(Vector3 vector3){
+        float randomX = Random.Range(0,1f);
+        float randomY = Random.Range(0,1f);
+        Vector3 newVector3 = new Vector3(vector3.x + randomX, vector3.y + randomY,0);
+        return newVector3;
     }
 }

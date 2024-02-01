@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AbilityShield : BaseAbility
@@ -9,7 +8,7 @@ public class AbilityShield : BaseAbility
     [SerializeField] protected bool isShieldOn = false;
     [SerializeField] protected Transform shield;
 
-    [SerializeField] protected Transform fxShield;
+    protected Transform fxShield;
 
     protected override void LoadComponents()
     {
@@ -31,6 +30,10 @@ public class AbilityShield : BaseAbility
     }
 
     public override void Active(){
+        if(this.shield == null){
+            Debug.LogError("Can't find Shield - GameObject in" + transform.parent?.parent?.name);
+            return;
+        }
         if(!this.isReady) return;
         base.Active();
         this.Shield();
@@ -69,4 +72,5 @@ public class AbilityShield : BaseAbility
         fxShield.SetParent(this.transform);
         fxShield.gameObject.SetActive(true);
     }
+
 }

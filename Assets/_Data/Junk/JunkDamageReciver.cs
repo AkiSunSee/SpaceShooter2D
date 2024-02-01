@@ -44,4 +44,5 @@ public class JunkDamageReciver : DamageReceiver
     protected virtual string GetOnDeadFXName(){
         return FXSpawner.FX1;
     }
+
 }

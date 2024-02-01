@@ -96,4 +96,7 @@ public abstract class Spawner : AkiBehaviour
         return transform;
     }
 
+    public virtual List<Transform> GetPrefabsList(){
+        return this.prefabs;
+    }
 }

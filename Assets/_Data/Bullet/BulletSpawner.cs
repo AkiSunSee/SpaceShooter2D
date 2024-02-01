@@ -9,6 +9,7 @@ public class BulletSpawner : Spawner
 
     public static string Bullet1 = "BulletRed";
     public static string Bullet2 = "BulletBlue";
+    public static string Missle = "Missle";
 
     protected override void Awake() {
         base.Awake();
