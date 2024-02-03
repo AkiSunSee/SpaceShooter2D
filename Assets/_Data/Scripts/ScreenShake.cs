@@ -4,8 +4,8 @@ public class ScreenShake : AkiBehaviour
 {
     public Transform cameraTransform;
     public float shakeDuration = 0f;
-    public float shakeMagnitude = 0.5f;
-    public float dampingSpeed = 1.0f;
+    public float shakeMagnitude = 0.8f;
+    public float dampingSpeed = 0.6f;
 
     Vector3 initialPosition;
 

@@ -7,12 +7,15 @@ using UnityEngine;
 
 public class AbilityMagnatic : BaseAbility
 {
-    [SerializeField] protected float magnaticFieldRadius = 20f;
-    [SerializeField] protected float magnaticFieldTime = 1f;
+    [SerializeField] protected float magneticCoolDown = 7f;
+    [SerializeField] protected float magnaticFieldRadius = 5f;
+    [SerializeField] protected float magnaticFieldTime = 10f;
     protected float magnaticFieldTimeCount = 0f;
     [SerializeField] protected float itemMovingSpeed = 0.1f;
     [SerializeField] protected SphereCollider sphereCollider;
     [SerializeField] protected Rigidbody _rigidbody;
+
+    [SerializeField] protected Transform fx;
 
     protected override void LoadComponents(){
         base.LoadComponents();
@@ -39,7 +42,7 @@ public class AbilityMagnatic : BaseAbility
     protected override void ResetValue()
     {
         base.ResetValue();
-        this.delay = 7f;
+        this.delay = this.magneticCoolDown;
         this.timer = this.delay;
     }
 
@@ -51,12 +54,14 @@ public class AbilityMagnatic : BaseAbility
 
     protected virtual void TurnOnMagnaticField(){
         this.sphereCollider.radius = this.magnaticFieldRadius;
+        this.CreateFX();
         StartCoroutine(this.TimingMagnaticField());
     }
 
     protected virtual void TurnOffMagnaticField(){
         this.magnaticFieldTimeCount = 0;
         this.sphereCollider.radius = 0.01f;
+        FXSpawner.Instance.Hold(this.fx);
     }
 
     protected IEnumerator TimingMagnaticField(){
@@ -67,6 +72,13 @@ public class AbilityMagnatic : BaseAbility
         this.TurnOffMagnaticField();
     }
     
+    protected virtual void CreateFX(){
+        Transform aOCTransform = this.abilities.AbilityObjectCtrl.transform;
+        this.fx = FXSpawner.Instance.Spawn(FXSpawner.FX8, aOCTransform.position, aOCTransform.rotation );
+        this.fx.gameObject.SetActive(true);
+        this.fx.SetParent(aOCTransform);
+    }
+
     protected virtual void OnTriggerEnter(Collider other){
         ItemPickupable itemPickupable = other.GetComponent<ItemPickupable>();
         if (itemPickupable == null) return;

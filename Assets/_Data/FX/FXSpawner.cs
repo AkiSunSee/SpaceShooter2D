@@ -13,6 +13,8 @@ public class FXSpawner : Spawner
     public static string FX4 = "Healing";
     public static string FX5 = "ShieldCover";
     public static string FX6 = "ShieldSide";
+    public static string FX7 = "MissleExplosion";
+    public static string FX8 = "Magnetic";
 
     protected override void Awake() {
         base.Awake();

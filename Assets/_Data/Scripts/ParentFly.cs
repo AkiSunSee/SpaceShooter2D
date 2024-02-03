@@ -11,4 +11,7 @@ public class ParentFly : AkiBehaviour
         transform.parent.Translate(this.dir * this.moveSpeed * Time.deltaTime);
     }
     
+    public virtual void SetMoveSpeed(float newMoveSpeed){
+        this.moveSpeed = newMoveSpeed;
+    }
 }

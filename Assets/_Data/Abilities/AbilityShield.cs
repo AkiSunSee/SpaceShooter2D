@@ -48,7 +48,7 @@ public class AbilityShield : BaseAbility
 
     protected virtual void ShieldOff(){
         this.shield.gameObject.SetActive(false);
-        FXSpawner.Instance.Hold(fxShield);
+        FXSpawner.Instance.Hold(this.fxShield);
         this.isShieldOn = false;
         this.shieldTimeCount = 0;
 
