@@ -32,8 +32,7 @@ public class ItemLooter : InventoryAbstract
     }
 
     protected virtual void OnTriggerEnter(Collider other) {
-        ItemPickupable itemPickupable = other.GetComponent<ItemPickupable>();
-        if (itemPickupable == null) return;
+        if (!other.TryGetComponent<ItemPickupable>(out var itemPickupable)) return;
         
         ItemInventory itemInventory = itemPickupable.ItemCtrl.ItemInventory;
         if(this.inventory.AddItem(itemInventory)){

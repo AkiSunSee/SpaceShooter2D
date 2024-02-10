@@ -1,0 +1,23 @@
+"filename", "language", "JSON", "Markdown", "UnityShader", "comment", "blank", "total"
+"e:\UNITY\Unity Learning\Project2D\Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader", "UnityShader", 0, 0, -109, -2, -33, -144
+"e:\UNITY\Unity Learning\Project2D\Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader", "UnityShader", 0, 0, -112, -3, -31, -146
+"e:\UNITY\Unity Learning\Project2D\Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader", "UnityShader", 0, 0, -109, -2, -33, -144
+"e:\UNITY\Unity Learning\Project2D\Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader", "UnityShader", 0, 0, -243, -4, -71, -318
+"e:\UNITY\Unity Learning\Project2D\Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader", "UnityShader", 0, 0, -241, -4, -66, -311
+"e:\UNITY\Unity Learning\Project2D\Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader", "UnityShader", 0, 0, -188, -10, -50, -248
+"e:\UNITY\Unity Learning\Project2D\Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader", "UnityShader", 0, 0, -183, -8, -50, -241
+"e:\UNITY\Unity Learning\Project2D\Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader", "UnityShader", 0, 0, -82, -4, -21, -107
+"e:\UNITY\Unity Learning\Project2D\Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader", "UnityShader", 0, 0, -183, -8, -50, -241
+"e:\UNITY\Unity Learning\Project2D\Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader", "UnityShader", 0, 0, -103, -8, -28, -139
+"e:\UNITY\Unity Learning\Project2D\Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader", "UnityShader", 0, 0, -122, -4, -33, -159
+"e:\UNITY\Unity Learning\Project2D\Assets\TextMesh Pro\Shaders\TMP_SDF.shader", "UnityShader", 0, 0, -243, -4, -71, -318
+"e:\UNITY\Unity Learning\Project2D\Assets\TextMesh Pro\Shaders\TMP_Sprite.shader", "UnityShader", 0, 0, -97, 0, -20, -117
+"e:\UNITY\Unity Learning\Project2D\Assets\TextMesh Pro\Shaders\TMPro.cginc", "UnityShader", 0, 0, -63, -2, -20, -85
+"e:\UNITY\Unity Learning\Project2D\Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc", "UnityShader", 0, 0, -122, -2, -34, -158
+"e:\UNITY\Unity Learning\Project2D\Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc", "UnityShader", 0, 0, -62, -10, -14, -86
+"e:\UNITY\Unity Learning\Project2D\Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc", "UnityShader", 0, 0, -76, -7, -19, -102
+"e:\UNITY\Unity Learning\Project2D\Assets\TextMesh Pro\Sprites\EmojiOne.json", "JSON", -155, 0, 0, 0, -2, -157
+"e:\UNITY\Unity Learning\Project2D\Packages\manifest.json", "JSON", -45, 0, 0, 0, -1, -46
+"e:\UNITY\Unity Learning\Project2D\Packages\packages-lock.json", "JSON", -483, 0, 0, 0, -1, -484
+"e:\UNITY\Unity Learning\Project2D\README.md", "Markdown", 0, -2, 0, 0, -1, -3
+"Total", "-", -683, -2, -2338, -82, -649, -3754

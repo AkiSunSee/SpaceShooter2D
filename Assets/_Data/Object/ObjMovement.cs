@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ObjMovement : AkiBehaviour
 {
-   static InputManager instance;
    [SerializeField] protected Vector3 targetPos;
    [SerializeField] protected float speed = 0.01f;
 
@@ -24,4 +23,7 @@ public class ObjMovement : AkiBehaviour
       transform.parent.position = newPos;
    }
 
+   public virtual void SetSpeed(float newSpeed){
+      this.speed = newSpeed;
+   }
 }

@@ -1,22 +1,15 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemDropSpawner : Spawner
+public class ItemDropSpawner : DropRateSpawner
 {
     private static ItemDropSpawner _instance;
     public static ItemDropSpawner Instance => _instance;
 
-    [SerializeField] protected float gameDropRate = 1;
-    [SerializeField] protected float playerDropRate = 1;
     protected override void Awake() {
         base.Awake();
         if(ItemDropSpawner._instance != null) Debug.LogError("Only 1 ItemDropSpawner allow to exist");
         ItemDropSpawner._instance = this;
-    }
-
-    public virtual void SetPlayerDropRate(float newPlayerDropRate){
-        this.playerDropRate = newPlayerDropRate;
     }
 
     public virtual List<ItemDropRate> Drop(List<ItemDropRate> dropList, Vector3 pos, Quaternion rot){
@@ -63,10 +56,6 @@ public class ItemDropSpawner : Spawner
         return droppedItems;
     }
 
-    protected virtual float GameDropRate(){
-        return this.gameDropRate*playerDropRate;
-    }
-
     public virtual Transform DropFromInventory(ItemInventory itemInventory, Vector3 pos, Quaternion rot){
         ItemCode itemCode = itemInventory.itemProfile.itemCode;
         Transform itemDrop = this.Spawn(itemCode.ToString(), pos, rot);
@@ -75,12 +64,5 @@ public class ItemDropSpawner : Spawner
         ItemCtrl itemCtrl = itemDrop.GetComponent<ItemCtrl>();
         itemCtrl.SetItemInventory(itemInventory);
         return itemDrop;
-    }
-
-    protected virtual Vector3 RandomNearDropPos(Vector3 vector3){
-        float randomX = Random.Range(0,1f);
-        float randomY = Random.Range(0,1f);
-        Vector3 newVector3 = new Vector3(vector3.x + randomX, vector3.y + randomY,0);
-        return newVector3;
     }
 }

@@ -17,8 +17,9 @@ MonoBehaviour:
   hpMax: 15
   radius: 0.28
   speed: 0.03
-  shootingSpeed: 0.2
+  shootingSpeed: 0.4
   collectItemsRating: 1
   attack: 1
   sprite: {fileID: 21300000, guid: 36df25ad54606994ab40842665e9f2cb, type: 3}
   dropList: []
+  buffList: []

@@ -12,7 +12,7 @@ public class PressableAbility : Pressable
         if(cooldown == null) return;
         if(cooldown.GetCoolDownStatus()) return;
         float time = PlayerCtrl.Instance.PlayerAbilities.GetTimedelayOfAbility(abitity);
-        Debug.Log(time);
+        Debug.Log("Ability cooldown time: "+time);
         cooldown.StartCoolDown(time);
     }
 }

@@ -7,9 +7,8 @@ using UnityEngine;
 
 public class AbilityMagnatic : BaseAbility
 {
-    [SerializeField] protected float magneticCoolDown = 7f;
     [SerializeField] protected float magnaticFieldRadius = 5f;
-    [SerializeField] protected float magnaticFieldTime = 10f;
+    [SerializeField] protected float magnaticFieldTime = 7f;
     protected float magnaticFieldTimeCount = 0f;
     [SerializeField] protected float itemMovingSpeed = 0.1f;
     [SerializeField] protected SphereCollider sphereCollider;
@@ -42,7 +41,7 @@ public class AbilityMagnatic : BaseAbility
     protected override void ResetValue()
     {
         base.ResetValue();
-        this.delay = this.magneticCoolDown;
+        this.delay = 15f;
         this.timer = this.delay;
     }
 

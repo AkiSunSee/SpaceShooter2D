@@ -8,6 +8,8 @@ public abstract class ObjShooting : AkiBehaviour
     [SerializeField] protected float shootDelay = 1f;
     [SerializeField] protected float shootTimer = 1f;
 
+    [SerializeField] protected int damage;
+
     [SerializeField] protected ShootableObjectCtrl shootableObjectCtrl;
 
     protected override void LoadComponents()
@@ -33,7 +35,7 @@ public abstract class ObjShooting : AkiBehaviour
     protected abstract bool IsShooting();
 
     protected virtual void Shooting(){
-        this.shootTimer += Time.fixedDeltaTime;
+        if(!this.CanShoot()) this.shootTimer += Time.fixedDeltaTime;
         if(this.shootTimer < shootDelay) return;
         if(!IsShooting()) return;
         //if(InputManager.Instance.IsRightMouseDown == 0) return;
@@ -45,11 +47,24 @@ public abstract class ObjShooting : AkiBehaviour
         this.shootTimer = 0;
         BulletCtrl bulletCtrl = newBullet.GetComponent<BulletCtrl>();
         bulletCtrl.SetShooter(transform.parent);
-        bulletCtrl.DmgSender.SetDamage(this.shootableObjectCtrl.ShootableObjectSO.attack);
+        bulletCtrl.DmgSender.SetDamage(this.damage);
+    }
+
+    protected virtual bool CanShoot(){
+        return this.shootTimer >= this.shootDelay;
     }
 
     protected virtual void LoadData(){
-        this.shootTimer = this.shootableObjectCtrl.ShootableObjectSO.shootingSpeed;
-        this.shootDelay = shootTimer;
+        this.shootDelay = this.shootableObjectCtrl.ShootableObjectSO.shootingSpeed;
+        this.shootTimer = shootDelay;
+        this.damage = this.shootableObjectCtrl.ShootableObjectSO.attack;
+    }
+
+    public virtual void SetDamage(int newDamage){
+        this.damage = newDamage;
+    }
+
+    public virtual void SetShootDelay(float newShootDelay){
+        this.shootDelay = newShootDelay;
     }
 }

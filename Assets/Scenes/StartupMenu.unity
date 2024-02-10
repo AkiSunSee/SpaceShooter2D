@@ -187,7 +187,9 @@ MonoBehaviour:
 
     Speed: 0,03
 
-    Luck: 2'
+    Luck: 2
+
+    AtkSpeed: 0,5s/1'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -546,10 +548,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 390651137}
-  - component: {fileID: 390651138}
   - component: {fileID: 390651140}
   - component: {fileID: 390651141}
   - component: {fileID: 390651139}
+  - component: {fileID: 390651142}
   m_Layer: 5
   m_Name: Healer
   m_TagString: Untagged
@@ -578,22 +580,6 @@ RectTransform:
   m_AnchoredPosition: {x: -100, y: -8.400002}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &390651138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 390651136}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c976ef8c744a41b4a9d885512500cd90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  button: {fileID: 390651139}
-  shootableObjectSO: {fileID: 11400000, guid: 8f3f03a911a46f4479145804ac128bfe, type: 2}
-  text: {fileID: 1266063336}
-  image: {fileID: 390651140}
 --- !u!114 &390651139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -676,6 +662,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 390651136}
   m_CullTransparentMesh: 1
+--- !u!114 &390651142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390651136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c976ef8c744a41b4a9d885512500cd90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 390651139}
+  shootableObjectSO: {fileID: 11400000, guid: 8f3f03a911a46f4479145804ac128bfe, type: 2}
+  text: {fileID: 1266063336}
+  image: {fileID: 390651140}
 --- !u!1 &744214125
 GameObject:
   m_ObjectHideFlags: 0
@@ -725,10 +727,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 769958090}
-  - component: {fileID: 769958091}
   - component: {fileID: 769958094}
   - component: {fileID: 769958093}
   - component: {fileID: 769958092}
+  - component: {fileID: 769958095}
   m_Layer: 5
   m_Name: Miner
   m_TagString: Untagged
@@ -757,22 +759,6 @@ RectTransform:
   m_AnchoredPosition: {x: 50, y: -8.400002}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &769958091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 769958089}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c976ef8c744a41b4a9d885512500cd90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  button: {fileID: 769958092}
-  shootableObjectSO: {fileID: 11400000, guid: f8af78a91c472714db28772ccd7bf08c, type: 2}
-  text: {fileID: 2120995}
-  image: {fileID: 769958093}
 --- !u!114 &769958092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -855,6 +841,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 769958089}
   m_CullTransparentMesh: 1
+--- !u!114 &769958095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769958089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c976ef8c744a41b4a9d885512500cd90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 769958092}
+  shootableObjectSO: {fileID: 11400000, guid: f8af78a91c472714db28772ccd7bf08c, type: 2}
+  text: {fileID: 2120995}
+  image: {fileID: 769958093}
 --- !u!1 &959439923
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,10 +934,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 964092436}
-  - component: {fileID: 964092437}
   - component: {fileID: 964092440}
   - component: {fileID: 964092439}
   - component: {fileID: 964092438}
+  - component: {fileID: 964092441}
   m_Layer: 5
   m_Name: Tanker
   m_TagString: Untagged
@@ -964,22 +966,6 @@ RectTransform:
   m_AnchoredPosition: {x: 200, y: -8.400002}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &964092437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 964092435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c976ef8c744a41b4a9d885512500cd90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  button: {fileID: 964092438}
-  shootableObjectSO: {fileID: 11400000, guid: a9fb1f3387478cd4b81c98649e21df32, type: 2}
-  text: {fileID: 1632820887}
-  image: {fileID: 964092439}
 --- !u!114 &964092438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1062,6 +1048,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 964092435}
   m_CullTransparentMesh: 1
+--- !u!114 &964092441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 964092435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c976ef8c744a41b4a9d885512500cd90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 964092438}
+  shootableObjectSO: {fileID: 11400000, guid: a9fb1f3387478cd4b81c98649e21df32, type: 2}
+  text: {fileID: 1632820887}
+  image: {fileID: 964092439}
 --- !u!1 &1106860979
 GameObject:
   m_ObjectHideFlags: 0
@@ -1321,7 +1323,9 @@ MonoBehaviour:
 
     Speed: 0,03
 
-    Luck: 1'
+    Luck: 1
+
+    AtkSpeed: 0,4s/1'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1522,10 +1526,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1621689843}
-  - component: {fileID: 1621689847}
   - component: {fileID: 1621689846}
   - component: {fileID: 1621689844}
   - component: {fileID: 1621689848}
+  - component: {fileID: 1621689849}
   m_Layer: 5
   m_Name: Fighter
   m_TagString: Untagged
@@ -1606,22 +1610,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1621689842}
   m_CullTransparentMesh: 1
---- !u!114 &1621689847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1621689842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c976ef8c744a41b4a9d885512500cd90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  button: {fileID: 1621689844}
-  shootableObjectSO: {fileID: 11400000, guid: 2e4f2533f5b3b6a41a873784b879199e, type: 2}
-  text: {fileID: 2063882313}
-  image: {fileID: 1621689848}
 --- !u!114 &1621689848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1652,6 +1640,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1621689849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621689842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c976ef8c744a41b4a9d885512500cd90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 1621689844}
+  shootableObjectSO: {fileID: 11400000, guid: 2e4f2533f5b3b6a41a873784b879199e, type: 2}
+  text: {fileID: 2063882313}
+  image: {fileID: 1621689848}
 --- !u!1 &1632820885
 GameObject:
   m_ObjectHideFlags: 0
@@ -1710,13 +1714,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Attack: 1
+  m_text: 'Attack: 2
 
     Hp: 30
 
-    Speed: 0,01
+    Speed: 0,02
 
-    Luck: 1'
+    Luck: 1
+
+    AtkSpeed: 0,7s/1'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1990,9 +1996,11 @@ MonoBehaviour:
 
     Hp: 10
 
-    Speed: 0,05
+    Speed: 0,04
 
-    Luck: 1'
+    Luck: 1
+
+    AtkSpeed: 0,3s/1'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
