@@ -27,6 +27,7 @@ public class PlayerAbilities : AkiBehaviour{
     }
 
     public virtual void Active(AbilitiesCode abilitiesCode){
+        if(PlayerCtrl.Instance.CurrentShip.DamageReceiver.IsDead()) return;
         Debug.Log("PlayerAbilities active "+ abilitiesCode.ToString(),gameObject);
         foreach(BaseAbility ability in this.abilities){
             if(ability.transform.name == abilitiesCode.ToString()){

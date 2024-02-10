@@ -56,9 +56,9 @@ public class AbilityShield : BaseAbility
 
     public IEnumerator ShieldOn()
     {
-        yield return new WaitForSeconds(Time.deltaTime);
-        shieldTimeCount += Time.deltaTime;
-        if (shieldTimeCount >= shieldTime)
+        yield return new WaitForFixedUpdate();
+        this.shieldTimeCount += Time.fixedDeltaTime;
+        if (this.shieldTimeCount >= shieldTime || this.shield.gameObject.activeSelf == false)
         {
             this.ShieldOff();
         }

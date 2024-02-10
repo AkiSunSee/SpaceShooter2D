@@ -20,4 +20,14 @@ MonoBehaviour:
   shootingSpeed: 3
   collectItemsRating: 2
   attack: 1
+  sprite: {fileID: 21300000, guid: a9e91bed1c814514a8d7c56bbce58b78, type: 3}
   dropList: []
+  buffList:
+  - buffPSO: {fileID: 11400000, guid: 41759baeb1ff33b41a520057fc6800e0, type: 2}
+    dropRate: 80000
+  - buffPSO: {fileID: 11400000, guid: b50e4a218f8501a4a927f7c777e045cc, type: 2}
+    dropRate: 40000
+  - buffPSO: {fileID: 11400000, guid: d01bcb6ad0173e048bd7026f04989ed2, type: 2}
+    dropRate: 40000
+  - buffPSO: {fileID: 11400000, guid: 2c8af00aba33fb84a842106cc622b8bb, type: 2}
+    dropRate: 50000

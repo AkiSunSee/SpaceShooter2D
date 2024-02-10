@@ -53,11 +53,19 @@ public abstract class DamageReceiver : AkiBehaviour
         return this.hp <= 0;
     }
 
+    public virtual void SetCurrentHP(int hp){
+        this.hp = hp;
+    }
+
+    public virtual int GetCurrentHP(){
+        return this.hp;
+    }
+
     protected virtual void CheckIsDead(){
         if(!this.IsDead()) return;
         this.isDead = true;
         this.OnDead();
-    } 
+    }
 
     protected abstract void OnDead();
 }

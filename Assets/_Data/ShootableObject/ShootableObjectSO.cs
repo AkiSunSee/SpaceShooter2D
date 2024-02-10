@@ -16,4 +16,5 @@ public class ShootableObjectSO : ScriptableObject {
     public int attack = 1;
     public Sprite sprite;
     public List<ItemDropRate> dropList;
+    public List<BuffDropRate> buffList;
 }

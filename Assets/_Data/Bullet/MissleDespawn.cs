@@ -39,7 +39,6 @@ public class MissleDespawn : DespawnByTime
     public override void DespawnObj(){
         if(Despawned) return;
         this.Despawned = true;
-        Debug.Log("DespawnObj",gameObject);
         this.model.gameObject.SetActive(false);
         this.CreateFX();
         this.TurnOnImpact();
@@ -54,7 +53,6 @@ public class MissleDespawn : DespawnByTime
     protected virtual void CreateFX(){
         Transform fx = FXSpawner.Instance.Spawn(FXSpawner.FX7,transform.parent.position,Quaternion.identity);
         fx.gameObject.SetActive(true);
-        Debug.Log("Spawn Missle Explosion FX",gameObject);
         this.MakeScreenShaking();
     }
 

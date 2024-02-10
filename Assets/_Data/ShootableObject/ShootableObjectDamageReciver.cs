@@ -35,6 +35,7 @@ public class ShootableObjectDamageReciver : DamageReceiver
         Vector3 dropPos = transform.position;
         Quaternion dropRot = transform.rotation;
         ItemDropSpawner.Instance.Drop(this.shootableObjectCtrl.ShootableObjectSO.dropList, dropPos, dropRot);
+        BuffSpawner.Instance.Drop(this.shootableObjectCtrl.ShootableObjectSO.buffList, dropPos, Quaternion.identity);
     }
 
     protected virtual void OnDeadFX(){

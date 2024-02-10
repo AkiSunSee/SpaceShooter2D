@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -47,7 +45,8 @@ public class ShipSelect : BaseButton
         float speed = this.shootableObjectSO.speed;
         int atk = this.shootableObjectSO.attack;
         float rate= this.shootableObjectSO.collectItemsRating;
-        this.text.SetText("Attack: "+atk+"\nHp: "+hp+"\nSpeed: "+speed+"\nLuck: "+rate);
+        float attackSpeed = this.shootableObjectSO.shootingSpeed;
+        this.text.SetText("Attack: "+atk+"\nHp: "+hp+"\nSpeed: "+speed+"\nLuck: "+rate+"\nAtkSpeed: "+attackSpeed+"s/1");
     }
 
     protected virtual void LoadImageData(){
