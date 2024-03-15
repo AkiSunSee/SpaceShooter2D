@@ -16,4 +16,4 @@ MonoBehaviour:
   buffName: Speed Buff
   buffMultiplierValue: 1.5
   sprite: {fileID: 0}
-  buffDuration: 40
+  buffDuration: 5

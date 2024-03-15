@@ -9,16 +9,21 @@ public class SpeedBuffHandler : BuffHandler
     }
 
     protected override void Buff(float buffMultiplierValue){
-        //Debug.Log(baseValue*buffMultiplierValue);
-        this.buffGrabber.ShootableObjectCtrl.ObjMovement.SetSpeed(baseValue*buffMultiplierValue);
+        //this.buffGrabber.ShootableObjectCtrl.ObjMovement.SetSpeed(baseValue*buffMultiplierValue);
+        this.buffValue = this.baseValue*buffMultiplierValue - this.baseValue;
+        this.attributesCtrl.AddAttributeValue(AttributesCode.Speed,buffValue);
+        this.buffGrabber.ShootableObjectCtrl.ObjMovement.SetSpeed(this.attributesCtrl.GetAttributeByCode(AttributesCode.Speed).currentValue);
     }
 
     protected override void BuffEnd(){
-        this.buffGrabber.ShootableObjectCtrl.ObjMovement.SetSpeed(baseValue);
+        // this.buffGrabber.ShootableObjectCtrl.ObjMovement.SetSpeed(baseValue);
+        this.attributesCtrl.DeductAttributeValue(AttributesCode.Speed,buffValue);
+        this.buffGrabber.ShootableObjectCtrl.ObjMovement.SetSpeed(this.attributesCtrl.GetAttributeByCode(AttributesCode.Speed).currentValue);
     }
 
     protected override void GetBaseValue(){
-        ShootableObjectCtrl sOC = this.buffGrabber.ShootableObjectCtrl.GetComponent<ShootableObjectCtrl>();
-        this.baseValue = sOC.ShootableObjectSO.speed;
+        // ShootableObjectCtrl sOC = this.buffGrabber.ShootableObjectCtrl.GetComponent<ShootableObjectCtrl>();
+        // this.baseValue = sOC.ShootableObjectSO.speed;
+        this.baseValue = this.attributesCtrl.GetAttributeByCode(AttributesCode.Speed).currentValue;
     }
 }

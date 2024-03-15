@@ -9,6 +9,8 @@ public class ItemProfileSO: ScriptableObject {
     public string itemName = "no-name";
     public int defaultMaxStack = 7;
     public Sprite sprite;
+    [Min(0)]
+    public int currency = 0;
     public List<ItemRecipe> upgradeLevels;
 
     public static ItemProfileSO FindByItemCode(ItemCode itemCode){

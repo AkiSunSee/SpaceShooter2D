@@ -16,9 +16,6 @@ public class AbilityHeal : BaseAbility
         base.ResetValue();
         this.delay = 20f;
         this.timer = this.delay;
-        //for testing 
-        int hp = this.abilities.AbilityObjectCtrl.DamageReceiver.HpMax-1;
-        this.abilities.AbilityObjectCtrl.DamageReceiver.Deduct(hp);
     }
 
     public override void Active(){

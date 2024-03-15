@@ -21,6 +21,7 @@ public class ScreenShake : AkiBehaviour
 
     protected virtual void Update()
     {
+        if(GameCtrl.Instance.IsGamePaused()) return;
         if (shakeDuration > 0)
         {
             cameraTransform.localPosition = initialPosition + Random.insideUnitSphere * shakeMagnitude;

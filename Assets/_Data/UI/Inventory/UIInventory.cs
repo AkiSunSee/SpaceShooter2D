@@ -30,10 +30,12 @@ public class UIInventory : UIInventoryAbstract
         else this.Close();
     }
     public virtual void Open(){
+        GameCtrl.Instance.PauseGame();
         transform.parent.gameObject.SetActive(true);
     }
 
     public virtual void Close(){
+        GameCtrl.Instance.UnPauseGame();
         transform.parent.gameObject.SetActive(false);
     }
 
@@ -41,7 +43,7 @@ public class UIInventory : UIInventoryAbstract
         if(this.isOpen) return;     
         this.ClearItems();
 
-        List<ItemInventory> items = PlayerCtrl.Instance.CurrentShip.Inventory.Items;
+        List<ItemInventory> items = PlayerCtrl.Instance.Inventory.Items;
         UIInventoryItemSpawner spawner = this.uIInventoryCtrl.UIInventoryItemSpawner;
         foreach (ItemInventory item in items)
         {

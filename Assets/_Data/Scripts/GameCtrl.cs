@@ -12,6 +12,8 @@ public class GameCtrl : AkiBehaviour
     [SerializeField] protected string selectedShipName;
     public string SelectedShipName => selectedShipName;
 
+    [SerializeField] protected bool isGamePaused=false;
+
     protected override void Awake() {
         base.Awake();
         if (GameCtrl.instance != null) Debug.LogError("Only 1 GameCtrl allow to exist");
@@ -36,5 +38,19 @@ public class GameCtrl : AkiBehaviour
 
     public virtual void SetSelectedShipName(string str){
         this.selectedShipName = str;
+    }
+
+    public virtual void PauseGame(){
+        this.isGamePaused = true;
+        Time.timeScale = 0;
+    }
+
+    public virtual void UnPauseGame(){
+        this.isGamePaused = false;
+        Time.timeScale = 1;
+    }
+
+    public virtual bool IsGamePaused(){
+        return this.isGamePaused;
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShootableObjectDamageReciver : DamageReceiver
@@ -27,8 +28,14 @@ public class ShootableObjectDamageReciver : DamageReceiver
     protected override void OnDead(){
         this.OnDeadFX();
         this.DropOnDead();
+        this.IncreaseScore();
         this.shootableObjectCtrl.Despawn.DespawnObj();
         
+    }
+
+    protected virtual void IncreaseScore(){
+        int score = this.shootableObjectCtrl.ShootableObjectSO.score;
+        ScoreManager.Instance.AddScore(score);
     }
 
     protected virtual void DropOnDead(){

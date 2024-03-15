@@ -7,6 +7,7 @@ public class PressableAbility : Pressable
     [SerializeField] protected AbilitiesCode abitity;
     public override void Pressed()
     {
+        if(GameCtrl.Instance.IsGamePaused()) return;
         PlayerCtrl.Instance.PlayerAbilities.Active(abitity);
         Cooldown cooldown = this.transform.parent.GetComponentInChildren<Cooldown>();
         if(cooldown == null) return;

@@ -9,12 +9,20 @@ public abstract class InventoryAbstract : AkiBehaviour
 
     protected override void LoadComponents(){
         base.LoadComponents();
-        this.LoadInventory();
+        StartCoroutine(WaitForShip());
     }
 
     protected virtual void LoadInventory(){
         if(this.inventory != null) return;
-        this.inventory = transform.parent.GetComponent<Inventory>();
-        Debug.LogWarning(transform.name + " LoadInventory", gameObject);
+        this.inventory = PlayerCtrl.Instance.Inventory;
+    }
+
+    private IEnumerator WaitForShip()
+    {
+        while (PlayerCtrl.Instance == null)
+        {
+            yield return null;
+        }
+        LoadInventory();
     }
 }

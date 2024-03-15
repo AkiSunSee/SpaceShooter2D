@@ -55,9 +55,9 @@ public abstract class ObjShooting : AkiBehaviour
     }
 
     protected virtual void LoadData(){
-        this.shootDelay = this.shootableObjectCtrl.ShootableObjectSO.shootingSpeed;
+        this.shootDelay = this.shootableObjectCtrl.AttributesCtrl.GetAttributeByCode(AttributesCode.AttackSpeed).currentValue;
         this.shootTimer = shootDelay;
-        this.damage = this.shootableObjectCtrl.ShootableObjectSO.attack;
+        this.damage = (int)this.shootableObjectCtrl.AttributesCtrl.GetAttributeByCode(AttributesCode.Attack).currentValue;
     }
 
     public virtual void SetDamage(int newDamage){

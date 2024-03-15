@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 public class PlayerCtrl : AkiBehaviour
@@ -16,6 +17,9 @@ public class PlayerCtrl : AkiBehaviour
     [SerializeField] protected PlayerAbilities playerAbilities;
     public PlayerAbilities PlayerAbilities => playerAbilities;
 
+    [SerializeField] protected Inventory inventory;
+    public Inventory Inventory => inventory;
+
     protected override void Awake(){
         base.Awake();
         if( PlayerCtrl.instance != null ) Debug.LogError("Only 1 PlayerCtrl allow to exist");
@@ -26,6 +30,7 @@ public class PlayerCtrl : AkiBehaviour
         base.LoadComponents();
         this.LoadPlayerPickup();
         this.LoadPlayerAbilities();
+        this.LoadInventory();
     }
 
     protected virtual void LoadPlayerPickup(){
@@ -40,9 +45,16 @@ public class PlayerCtrl : AkiBehaviour
         Debug.Log(transform.name + " LoadPlayerAbilities", gameObject);
     }
 
+    protected virtual void LoadInventory(){
+        if(this.inventory != null) return;
+        this.inventory = transform.GetComponentInChildren<Inventory>();
+        Debug.LogWarning(transform.name +": LoadInventory",gameObject);
+    }
+
     public virtual void SetCurrentShip(Transform ship){
         ShipCtrl shipCtrl = ship.GetComponent<ShipCtrl>();
         if(shipCtrl == null) return;
         this.currentShip = shipCtrl;
     }
+
 }

@@ -9,18 +9,23 @@ public class AttackBuffHandler : BuffHandler
     }
     
     protected override void Buff(float buffMultiplierValue){
-        //this.buffGrabber.ShootableObjectCtrl.ObjMovement.SetSpeed(baseValue*buffMultiplierValue);
-        int newValue = Mathf.CeilToInt(baseValue*buffMultiplierValue);
-        this.buffGrabber.ShootableObjectCtrl.ObjShooting.SetDamage(newValue);
+        //int newValue = Mathf.CeilToInt(baseValue*buffMultiplierValue);
+        //this.buffGrabber.ShootableObjectCtrl.ObjShooting.SetDamage(newValue);
+        this.buffValue = this.baseValue*buffMultiplierValue - this.baseValue;
+        this.attributesCtrl.AddAttributeValue(AttributesCode.Attack,buffValue);
+        this.buffGrabber.ShootableObjectCtrl.ObjShooting.SetDamage((int)this.attributesCtrl.GetAttributeByCode(AttributesCode.Attack).currentValue);
+        
     }
 
     protected override void BuffEnd(){
-        //this.buffGrabber.ShootableObjectCtrl.ObjMovement.SetSpeed(baseValue);
-        this.buffGrabber.ShootableObjectCtrl.ObjShooting.SetDamage((int)baseValue);
+        // this.buffGrabber.ShootableObjectCtrl.ObjShooting.SetDamage((int)baseValue);
+        this.attributesCtrl.DeductAttributeValue(AttributesCode.Attack,buffValue);
+        this.buffGrabber.ShootableObjectCtrl.ObjShooting.SetDamage((int)this.attributesCtrl.GetAttributeByCode(AttributesCode.Attack).currentValue);
     }
 
     protected override void GetBaseValue(){
-        ShootableObjectCtrl sOC = this.buffGrabber.ShootableObjectCtrl.GetComponent<ShootableObjectCtrl>();
-        this.baseValue = sOC.ShootableObjectSO.attack;
+        // ShootableObjectCtrl sOC = this.buffGrabber.ShootableObjectCtrl.GetComponent<ShootableObjectCtrl>();
+        // this.baseValue = sOC.ShootableObjectSO.attack;
+        this.baseValue = this.attributesCtrl.GetAttributeByCode(AttributesCode.Attack).currentValue;
     }
 }

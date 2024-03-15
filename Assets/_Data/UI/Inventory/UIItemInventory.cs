@@ -18,13 +18,22 @@ public class UIItemInventory : AkiBehaviour
     [SerializeField] protected Image itemImage;
     public Image ItemImage => itemImage;
 
+    // [SerializeField] protected ContextMenu contextMenu;
+    // public ContextMenu ContextMenu => contextMenu;
+
     protected override void LoadComponents(){
         base.LoadComponents();
         this.LoadItemName();
         this.LoadItemCount();
         this.LoadItemImage();
+        //this.LoadContextMenu();
     }
 
+    // protected virtual void LoadContextMenu(){
+    //     if(this.contextMenu != null) return;
+    //     this.contextMenu = GetComponentInChildren<ContextMenu>();
+    //     Debug.LogWarning(transform.name+": LoadContextMenu",gameObject);
+    // }
     protected virtual void LoadItemName(){
         if(this.itemName != null) return;
         this.itemName = transform.Find("ItemName").GetComponent<Text>();
@@ -49,4 +58,16 @@ public class UIItemInventory : AkiBehaviour
         this.itemCount.text = item.itemCount.ToString();
         this.itemImage.sprite = item.itemProfile.sprite;
     }
+
+    private void OnGUI()
+    {
+        if (Event.current.type == EventType.MouseDown && Event.current.button == 1)
+        {
+           Debug.Log(transform.name);
+        }
+    }
+
+    // private void OnMouseDown() {
+    //     Debug.Log(transform.name);    
+    // }
 }

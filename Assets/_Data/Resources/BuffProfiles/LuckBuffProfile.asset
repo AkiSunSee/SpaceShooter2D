@@ -16,4 +16,4 @@ MonoBehaviour:
   buffName: Luck Buff
   buffMultiplierValue: 1.5
   sprite: {fileID: 0}
-  buffDuration: 30
+  buffDuration: 5

@@ -16,4 +16,4 @@ MonoBehaviour:
   buffName: Attack Buff
   buffMultiplierValue: 1.5
   sprite: {fileID: 0}
-  buffDuration: 15
+  buffDuration: 5

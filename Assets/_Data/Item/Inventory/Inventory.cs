@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class Inventory : AkiBehaviour
 {
@@ -15,8 +14,8 @@ public class Inventory : AkiBehaviour
     protected override void Start() {
         base.Start();
         this.AddItem(ItemCode.GoldenSword,1);
-        this.AddItem(ItemCode.IronOre,20);
-        this.AddItem(ItemCode.GoldOre,60);
+        this.AddItem(ItemCode.IronOre,3);
+        this.AddItem(ItemCode.GoldOre,5);
     }
     
     public virtual bool IsInventoryFull(){
