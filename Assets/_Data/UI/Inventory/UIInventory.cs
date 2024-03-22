@@ -41,6 +41,11 @@ public class UIInventory : UIInventoryAbstract
 
     protected virtual void ShowItems(){
         if(this.isOpen) return;     
+        this.ReloadItems();
+        this.SortItems();
+    }
+
+    public virtual void ReloadItems(){
         this.ClearItems();
 
         List<ItemInventory> items = PlayerCtrl.Instance.Inventory.Items;
@@ -49,8 +54,6 @@ public class UIInventory : UIInventoryAbstract
         {
             spawner.SpawnItem(item);
         }
-
-        this.SortItems();
     }
 
     protected virtual void ClearItems(){

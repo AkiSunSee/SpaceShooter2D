@@ -12,6 +12,8 @@ public class ItemProfileSO: ScriptableObject {
     [Min(0)]
     public int currency = 0;
     public List<ItemRecipe> upgradeLevels;
+    public List<ItemStat> itemStats;
+
 
     public static ItemProfileSO FindByItemCode(ItemCode itemCode){
         var profiles = Resources.LoadAll("ItemProfiles", typeof(ItemProfileSO));

@@ -1,14 +1,23 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ContextMenu : AkiBehaviour
 {
     [SerializeField] protected UIItemInventory uIItemInventory;
+    protected ItemInventory item;
+    protected GenericMenu menu;
 
     protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadUIII();
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        this.LoadItem();
     }
 
     protected virtual void LoadUIII(){
@@ -17,39 +26,48 @@ public class ContextMenu : AkiBehaviour
         Debug.LogWarning(transform.name+": LoadUIII",gameObject);
     }
 
-    private void OnGUI()
-    {
-        if (Event.current.type == EventType.MouseDown && Event.current.button == 1)
-        {
-            // Tạo một ray từ vị trí chuột
-            Ray ray = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
-                // Kiểm tra xem đối tượng được hit có phải là ContextMenu không
-                ContextMenu clickedMenu = hit.collider.GetComponentInChildren<ContextMenu>();
-                if (clickedMenu != null && clickedMenu.uIItemInventory == this.uIItemInventory)
-                {
-                    // Nếu là ContextMenu và có cùng contextMenuID, debug thông tin
-                    Debug.Log(clickedMenu.uIItemInventory.gameObject.name);
-                }
-            }
-        }
+    protected virtual void LoadItem(){
+        this.item = this.uIItemInventory.ItemInventory;
     }
     private void SellItem()
     {
-        Debug.Log("Item sold!");
-        Debug.Log(this.uIItemInventory,gameObject);
-        ItemInventory item = this.uIItemInventory.ItemInventory;
+        //Debug.Log("Item sold!");
         Inventory inventory = PlayerCtrl.Instance.Inventory;
-        Debug.Log(item.itemProfile.itemCode+" - "+item.itemCount,gameObject);
-        // inventory.DeductItem(item.itemProfile.itemCode,item.itemCount);
-        // int currencyReceive = item.itemCount*item.itemProfile.currency;
-        // CurrencyManager.Instance.AddCurrency(currencyReceive);
+        //Debug.Log(item.itemProfile.itemCode+" - "+item.itemCount,gameObject);
+        inventory.DeductItem(item.itemProfile.itemCode,item.itemCount);
+        int currencyReceive = item.itemCount*item.itemProfile.currency;
+        CurrencyManager.Instance.AddCurrency(currencyReceive);
+        UIInventory.Instance.ReloadItems();
     }
 
     private void EquipItem()
     {
-        Debug.Log("Item equipped!");
+        //Debug.Log("Item equipped!");
+        PlayerCtrl.Instance.Equipment.Equip(this.item);
+    }
+
+    private void UnEquipItem(){
+        //Debug.Log("Item unequiped!");
+        PlayerCtrl.Instance.Equipment.UnEquip(this.item);
+    }
+
+    protected virtual void AddItemEquip(){
+        //Debug.Log(this.item.itemProfile.itemCode);
+        if(PlayerCtrl.Instance.Equipment.IsItemEquiped(this.item)) this.menu.AddItem(new GUIContent("Equip"), true, UnEquipItem);
+        this.menu.AddItem(new GUIContent("Equip"), false, EquipItem);
+    }
+
+    public void ShowContextMenu(Vector2 mousePosition)
+    {
+        Vector2 screenSize = new Vector2(Screen.width, Screen.height);
+        mousePosition.y = screenSize.y - mousePosition.y;
+        Rect rect = new Rect(mousePosition.x, mousePosition.y, 0, 0);
+       
+        this.menu = new GenericMenu();
+        this.menu.AddItem(new GUIContent("Sell"), false, SellItem);
+        if(this.item.itemProfile.itemType == ItemType.Equipment){
+            this.AddItemEquip();
+        }else this.menu.AddDisabledItem(new GUIContent("Equip"));
+        this.menu.DropDown(rect);
     }
 }

@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UIItemInventory : AkiBehaviour
+public class UIItemInventory : AkiBehaviour, IPointerClickHandler
 {
     [Header("UI Item Inventory")]
 
@@ -18,22 +19,23 @@ public class UIItemInventory : AkiBehaviour
     [SerializeField] protected Image itemImage;
     public Image ItemImage => itemImage;
 
-    // [SerializeField] protected ContextMenu contextMenu;
-    // public ContextMenu ContextMenu => contextMenu;
+    [SerializeField] protected ContextMenu contextMenu;
+    public ContextMenu ContextMenu => contextMenu;
 
     protected override void LoadComponents(){
         base.LoadComponents();
         this.LoadItemName();
         this.LoadItemCount();
         this.LoadItemImage();
-        //this.LoadContextMenu();
+        this.LoadContextMenu();
     }
 
-    // protected virtual void LoadContextMenu(){
-    //     if(this.contextMenu != null) return;
-    //     this.contextMenu = GetComponentInChildren<ContextMenu>();
-    //     Debug.LogWarning(transform.name+": LoadContextMenu",gameObject);
-    // }
+    protected virtual void LoadContextMenu(){
+        if(this.contextMenu != null) return;
+        this.contextMenu = GetComponentInChildren<ContextMenu>();
+        Debug.LogWarning(transform.name+": LoadContextMenu",gameObject);
+    }
+
     protected virtual void LoadItemName(){
         if(this.itemName != null) return;
         this.itemName = transform.Find("ItemName").GetComponent<Text>();
@@ -59,15 +61,12 @@ public class UIItemInventory : AkiBehaviour
         this.itemImage.sprite = item.itemProfile.sprite;
     }
 
-    private void OnGUI()
+    public void OnPointerClick(PointerEventData eventData)
     {
-        if (Event.current.type == EventType.MouseDown && Event.current.button == 1)
+        if (eventData.button == PointerEventData.InputButton.Right)
         {
-           Debug.Log(transform.name);
+            Vector2 mousePosition = eventData.position;
+            this.contextMenu.ShowContextMenu(mousePosition);
         }
     }
-
-    // private void OnMouseDown() {
-    //     Debug.Log(transform.name);    
-    // }
 }

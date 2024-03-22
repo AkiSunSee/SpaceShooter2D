@@ -20,6 +20,9 @@ public class PlayerCtrl : AkiBehaviour
     [SerializeField] protected Inventory inventory;
     public Inventory Inventory => inventory;
 
+    [SerializeField] protected Equipment equipment;
+    public Equipment Equipment => equipment;
+
     protected override void Awake(){
         base.Awake();
         if( PlayerCtrl.instance != null ) Debug.LogError("Only 1 PlayerCtrl allow to exist");
@@ -31,6 +34,13 @@ public class PlayerCtrl : AkiBehaviour
         this.LoadPlayerPickup();
         this.LoadPlayerAbilities();
         this.LoadInventory();
+        this.LoadEquipment();
+    }
+
+    protected virtual void LoadEquipment(){
+        if(this.equipment != null ) return;
+        this.equipment = transform.GetComponentInChildren<Equipment>();
+        Debug.Log(transform.name + " LoadEquipment", gameObject);
     }
 
     protected virtual void LoadPlayerPickup(){
