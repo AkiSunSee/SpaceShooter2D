@@ -60,33 +60,33 @@ public class Equipment : AkiBehaviour
     protected virtual void ModifyAttackStat(ItemStat itemStat, ShootableObjectCtrl sOC, bool isEquip){
         float baseValue = sOC.ShootableObjectSO.attack;
         float buffValue = baseValue*itemStat.percent/100;
-        if(itemStat.isBuff == isEquip) sOC.AttributesCtrl.AddAttributeValue(itemStat.attribute,buffValue);
-        else sOC.AttributesCtrl.DeductAttributeValue(itemStat.attribute,buffValue);
-        sOC.ObjShooting.SetDamage((int)sOC.AttributesCtrl.GetAttributeByCode(itemStat.attribute).currentValue);
+        if(itemStat.isBuff == isEquip) sOC.AttributesCtrl.AddAttributeValue(itemStat.attribute,buffValue,true);
+        else sOC.AttributesCtrl.DeductAttributeValue(itemStat.attribute,buffValue,true);
+        sOC.ObjShooting.SetDamage((int)sOC.AttributesCtrl.GetAttributeByCode(itemStat.attribute).baseValue);
     }
 
     protected virtual void ModifyAtkSpeedStat(ItemStat itemStat, ShootableObjectCtrl sOC, bool isEquip){
         float baseValue = sOC.ShootableObjectSO.shootingSpeed;
         float buffValue = baseValue*itemStat.percent/100;
-        if(itemStat.isBuff == isEquip) sOC.AttributesCtrl.DeductAttributeValue(itemStat.attribute,buffValue);
-        else sOC.AttributesCtrl.AddAttributeValue(itemStat.attribute,buffValue);
-        sOC.ObjShooting.SetShootDelay(sOC.AttributesCtrl.GetAttributeByCode(itemStat.attribute).currentValue);
+        if(itemStat.isBuff == isEquip) sOC.AttributesCtrl.DeductAttributeValue(itemStat.attribute,buffValue,true);
+        else sOC.AttributesCtrl.AddAttributeValue(itemStat.attribute,buffValue, true);
+        sOC.ObjShooting.SetShootDelay(sOC.AttributesCtrl.GetAttributeByCode(itemStat.attribute).baseValue);
     }
 
     protected virtual void ModifySpeedStat(ItemStat itemStat, ShootableObjectCtrl sOC, bool isEquip){
         float baseValue = sOC.ShootableObjectSO.speed;
         float buffValue = baseValue*itemStat.percent/100;
-        if(itemStat.isBuff == isEquip) sOC.AttributesCtrl.AddAttributeValue(itemStat.attribute,buffValue);
-        else sOC.AttributesCtrl.DeductAttributeValue(itemStat.attribute,buffValue);
-        sOC.ObjMovement.SetSpeed(sOC.AttributesCtrl.GetAttributeByCode(itemStat.attribute).currentValue);
+        if(itemStat.isBuff == isEquip) sOC.AttributesCtrl.AddAttributeValue(itemStat.attribute,buffValue, true);
+        else sOC.AttributesCtrl.DeductAttributeValue(itemStat.attribute,buffValue,true);
+        sOC.ObjMovement.SetSpeed(sOC.AttributesCtrl.GetAttributeByCode(itemStat.attribute).baseValue);
     }
 
     protected virtual void ModifyLuckStat(ItemStat itemStat, ShootableObjectCtrl sOC, bool isEquip){
         float baseValue = sOC.ShootableObjectSO.collectItemsRating;
         float buffValue = baseValue*itemStat.percent/100;
-        if(itemStat.isBuff == isEquip) sOC.AttributesCtrl.AddAttributeValue(itemStat.attribute,buffValue);
-        else sOC.AttributesCtrl.DeductAttributeValue(itemStat.attribute, buffValue);
-        ItemDropSpawner.Instance.SetPlayerDropRate(sOC.AttributesCtrl.GetAttributeByCode(AttributesCode.Luck).currentValue);
+        if(itemStat.isBuff == isEquip) sOC.AttributesCtrl.AddAttributeValue(itemStat.attribute,buffValue, true);
+        else sOC.AttributesCtrl.DeductAttributeValue(itemStat.attribute, buffValue,true);
+        ItemDropSpawner.Instance.SetPlayerDropRate(sOC.AttributesCtrl.GetAttributeByCode(AttributesCode.Luck).baseValue);
     }
 
     // protected virtual void RemoveItemStat(ItemStat itemStat){

@@ -16,6 +16,7 @@ public class AbilitySummonEnemy : AbilitySummon
     protected override void LoadComponents(){
         base.LoadComponents();
         this.LoadEnemySpawner();
+        this.SetPrefab();
     }
 
     protected virtual void LoadEnemySpawner(){
@@ -24,7 +25,9 @@ public class AbilitySummonEnemy : AbilitySummon
         this.spawner = enemySpawner.GetComponent<Spawner>();
         Debug.Log(transform.name+": Loadspawner", gameObject);
     }
-
+    protected virtual void SetPrefab(){
+        this.prefab = this.spawner.GetPrefabByName("Enemy1");
+    }
     protected virtual bool IsSummonReachLimit(){
         return this.minions.Count >= summonLimit;
     }

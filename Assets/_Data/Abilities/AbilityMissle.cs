@@ -30,12 +30,12 @@ public class AbilityMissle : BaseAbility
     protected virtual void SetMissleData(Transform newBullet, AbilityObjectCtrl shooterCtrl){
         BulletCtrl bulletCtrl = newBullet.GetComponent<BulletCtrl>();
         bulletCtrl.SetShooter(this.transform.parent.parent);
-        bulletCtrl.DmgSender.SetDamage(shooterCtrl.ShootableObjectSO.attack*this.damageMultiply);
+        bulletCtrl.DmgSender.SetDamage((int)shooterCtrl.AttributesCtrl.GetAttributeByCode(AttributesCode.Attack).baseValue*this.damageMultiply);
         bulletCtrl.BulletImpact.SetSphereRadius(this.explosionRadius);
         bulletCtrl.gameObject.SetActive(true);
 
         MissleFly missleFly = bulletCtrl.GetComponentInChildren<MissleFly>();
         if(missleFly == null) Debug.LogError("You miss MissleFly script for Missle GameObject");
-        missleFly.SetMoveSpeed(shooterCtrl.ShootableObjectSO.speed + 3.5f);
+        missleFly.SetMoveSpeed(shooterCtrl.AttributesCtrl.GetAttributeByCode(AttributesCode.Speed).baseValue + 3.5f);
     }
 }

@@ -9,15 +9,22 @@ public class AbilityWarp : BaseAbility
     [SerializeField] protected bool isWarping = false;
 
     [SerializeField] protected Vector4 warpDirection;
-    [SerializeField] protected float warpSpeed =1f;
+    [SerializeField] protected float warpSpeed =0.5f;
     [SerializeField] protected float warpDistance = 2f;
+    [SerializeField] protected StaminaBar staminaBar;
 
-    protected override void OnEnable()
+    protected override void LoadComponents()
     {
-        base.OnEnable();
-        // this.timer = 5f;
-        // this.delay = 5f;
+        base.LoadComponents();
+        this.LoadStaminaBar();
     }
+
+    protected virtual void LoadStaminaBar(){
+        if(this.staminaBar != null) return;
+        this.staminaBar = GameObject.Find("StaminaBarMask").GetComponent<StaminaBar>();
+        Debug.LogWarning(transform.name+" LoadStaminaBar",gameObject);
+    }
+
     protected override void Update()
     {
         base.Update();
@@ -40,22 +47,22 @@ public class AbilityWarp : BaseAbility
     }
 
     protected virtual void WarpLeft(){
-        Debug.Log("Left");
+        //Debug.Log("Left");
         this.warpDirection.x = 1;
     }
 
     protected virtual void WarpRight(){
-        Debug.Log("Right");
+        //Debug.Log("Right");
         this.warpDirection.y = 1;
     }
 
     protected virtual void WarpUp(){
-        Debug.Log("Up");
+        //Debug.Log("Up");
         this.warpDirection.z = 1;
     }
 
     protected virtual void WarpDown(){
-        Debug.Log("Down");
+        //Debug.Log("Down");
         this.warpDirection.w = 1;
     }
 
@@ -66,8 +73,8 @@ public class AbilityWarp : BaseAbility
         if(this.isWarping) return;
         if(this.IsDirectionNotSet()) return;
 
-        Debug.LogWarning("Warping");
-        Debug.LogWarning(this.warpDirection);
+        //Debug.LogWarning("Warping");
+        //Debug.LogWarning(this.warpDirection);
 
         this.isWarping = true;
         Invoke(nameof(this.WarpFinish), this.warpSpeed);
@@ -75,10 +82,19 @@ public class AbilityWarp : BaseAbility
 
     protected virtual void WarpFinish(){
         this.MoveObj();
-        Debug.LogWarning("<b>  Warp Finish <b>");
+        //Debug.LogWarning("<b>  Warp Finish <b>");
         this.warpDirection = Vector4.zero;
         this.isWarping = false;
         this.Active();
+    }
+
+    protected override void Timing()
+    {
+        if(this.isReady) return;    
+        this.timer += Time.fixedDeltaTime;
+        this.staminaBar.UpdateBarUI(this.timer,this.delay);
+        if(this.timer < delay) return;
+        this.isReady = true;
     }
 
     protected virtual void MoveObj(){

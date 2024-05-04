@@ -11,19 +11,20 @@ public class LuckBuffHandler : BuffHandler
     protected override void Buff(float buffMultiplierValue){
         //ItemDropSpawner.Instance.SetPlayerDropRate(baseValue*buffMultiplierValue);
         this.buffValue = this.baseValue*buffMultiplierValue - this.baseValue;
-        this.attributesCtrl.AddAttributeValue(AttributesCode.Luck,buffValue);
+        this.attributesCtrl.AddAttributeValue(AttributesCode.Luck,buffValue,false);
         ItemDropSpawner.Instance.SetPlayerDropRate(this.attributesCtrl.GetAttributeByCode(AttributesCode.Luck).currentValue);
     }
 
     protected override void BuffEnd(){
         //ItemDropSpawner.Instance.SetPlayerDropRate(baseValue);
-        this.attributesCtrl.DeductAttributeValue(AttributesCode.Luck,buffValue);
-        ItemDropSpawner.Instance.SetPlayerDropRate(this.attributesCtrl.GetAttributeByCode(AttributesCode.Luck).currentValue);
+        this.attributesCtrl.DeductAttributeValue(AttributesCode.Luck,buffValue,false);
+        // ItemDropSpawner.Instance.SetPlayerDropRate(this.attributesCtrl.GetAttributeByCode(AttributesCode.Luck).currentValue);
+        ItemDropSpawner.Instance.SetPlayerDropRate(this.baseValue);
     }
 
     protected override void GetBaseValue(){
         // ShootableObjectCtrl sOC = this.buffGrabber.ShootableObjectCtrl.GetComponent<ShootableObjectCtrl>();
         // this.baseValue = sOC.ShootableObjectSO.collectItemsRating;
-        this.baseValue = this.attributesCtrl.GetAttributeByCode(AttributesCode.Luck).currentValue;
+        this.baseValue = this.attributesCtrl.GetAttributeByCode(AttributesCode.Luck).baseValue;
     }
 }

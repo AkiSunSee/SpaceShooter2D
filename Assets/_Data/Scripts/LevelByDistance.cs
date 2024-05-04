@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelByDistance : Level
+public class LevelByDistance : LevelManager
 {
     [Header("By Distance")]
     [SerializeField] protected Transform target;

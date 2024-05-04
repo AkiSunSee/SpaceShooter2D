@@ -29,6 +29,7 @@ public class ShootableObjectDamageReciver : DamageReceiver
         this.OnDeadFX();
         this.DropOnDead();
         this.IncreaseScore();
+        this.GainingExp();
         this.shootableObjectCtrl.Despawn.DespawnObj();
         
     }
@@ -36,6 +37,11 @@ public class ShootableObjectDamageReciver : DamageReceiver
     protected virtual void IncreaseScore(){
         int score = this.shootableObjectCtrl.ShootableObjectSO.score;
         ScoreManager.Instance.AddScore(score);
+    }
+
+    protected virtual void GainingExp(){
+        int exp = this.shootableObjectCtrl.ShootableObjectSO.exp;
+        LevelManager.Instance.GainExp(exp);
     }
 
     protected virtual void DropOnDead(){

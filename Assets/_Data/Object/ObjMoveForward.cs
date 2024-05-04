@@ -38,6 +38,6 @@ public class ObjMoveForward : ObjMovement
    }
 
    protected virtual void LoadData(){
-      this.speed = this.shootableObjectCtrl.AttributesCtrl.GetAttributeByCode(AttributesCode.Speed).currentValue;
+      this.speed = this.shootableObjectCtrl.AttributesCtrl.GetAttributeByCode(AttributesCode.Speed).baseValue;
    }
 }

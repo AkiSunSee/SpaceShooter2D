@@ -17,6 +17,7 @@ public class ShootableObjectSO : ScriptableObject {
     public Sprite sprite;
     [Min(1)]
     public int score = 1;
+    public int exp = 1;
     public List<ItemDropRate> dropList;
     public List<BuffDropRate> buffList;
 }

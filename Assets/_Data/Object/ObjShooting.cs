@@ -41,8 +41,12 @@ public abstract class ObjShooting : AkiBehaviour
         //if(InputManager.Instance.IsRightMouseDown == 0) return;
         Vector3 spawnPos = transform.parent.position;
         Quaternion rotation = transform.parent.rotation;
-        Transform newBullet = BulletSpawner.Instance.Spawn(BulletSpawner.Bullet1, spawnPos, rotation);
-        if(newBullet == null) return;
+        Transform newBullet;
+        if (this.shootableObjectCtrl.name != PlayerCtrl.Instance.CurrentShip.name)
+            newBullet = BulletSpawner.Instance.Spawn(BulletSpawner.Bullet2, spawnPos, rotation);
+        else
+            newBullet = BulletSpawner.Instance.Spawn(BulletSpawner.Bullet1, spawnPos, rotation);
+        if (newBullet == null) return;
         newBullet.gameObject.SetActive(true);
         this.shootTimer = 0;
         BulletCtrl bulletCtrl = newBullet.GetComponent<BulletCtrl>();
@@ -55,9 +59,9 @@ public abstract class ObjShooting : AkiBehaviour
     }
 
     protected virtual void LoadData(){
-        this.shootDelay = this.shootableObjectCtrl.AttributesCtrl.GetAttributeByCode(AttributesCode.AttackSpeed).currentValue;
+        this.shootDelay = this.shootableObjectCtrl.AttributesCtrl.GetAttributeByCode(AttributesCode.AttackSpeed).baseValue;
         this.shootTimer = shootDelay;
-        this.damage = (int)this.shootableObjectCtrl.AttributesCtrl.GetAttributeByCode(AttributesCode.Attack).currentValue;
+        this.damage = (int)this.shootableObjectCtrl.AttributesCtrl.GetAttributeByCode(AttributesCode.Attack).baseValue;
     }
 
     public virtual void SetDamage(int newDamage){

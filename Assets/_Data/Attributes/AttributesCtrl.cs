@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class AttributesCtrl : AkiBehaviour{
     [SerializeField] protected ShootableObjectCtrl shootableObjectCtrl;
-    [SerializeField] protected List<Attribute> attributes = new List<Attribute>();
+    [SerializeField] public List<Attribute> attributes = new List<Attribute>();
 
     protected override void LoadComponents()
     {
@@ -33,37 +33,36 @@ public class AttributesCtrl : AkiBehaviour{
     }
 
     protected virtual void LoadAttributes(){
+        Dictionary<AttributesCode, float> attributeMap = new Dictionary<AttributesCode, float>{
+            { AttributesCode.Attack, shootableObjectCtrl.ShootableObjectSO.attack },
+            { AttributesCode.AttackSpeed, shootableObjectCtrl.ShootableObjectSO.shootingSpeed },
+            { AttributesCode.Speed, shootableObjectCtrl.ShootableObjectSO.speed },
+            { AttributesCode.Luck, shootableObjectCtrl.ShootableObjectSO.collectItemsRating }
+        };
+
         bool missingAttri = false;
-        foreach (Attribute attribute in this.attributes)
-        {
-            if(attribute.attributesCode == AttributesCode.Attack){
-                attribute.currentValue = this.shootableObjectCtrl.ShootableObjectSO.attack;
-                continue;
+        foreach (Attribute attribute in attributes){
+            if (attributeMap.ContainsKey(attribute.attributesCode)){
+                float value = attributeMap[attribute.attributesCode];
+                attribute.baseValue = value;
+                attribute.currentValue = attribute.baseValue;
+            } else {
+                missingAttri = true;
             }
-            if(attribute.attributesCode == AttributesCode.AttackSpeed){
-                attribute.currentValue = this.shootableObjectCtrl.ShootableObjectSO.shootingSpeed;
-                continue;
-            }
-            if(attribute.attributesCode == AttributesCode.Speed){
-                attribute.currentValue = this.shootableObjectCtrl.ShootableObjectSO.speed;
-                continue;
-            }
-            if(attribute.attributesCode == AttributesCode.Luck){
-                attribute.currentValue = this.shootableObjectCtrl.ShootableObjectSO.collectItemsRating;
-                continue;
-            }
-            missingAttri = true;
         }
-        if(missingAttri) Debug.LogWarning(transform.name + "LoadAttributes: You are missing attribute to load!!!",gameObject);
+
+        if (missingAttri) Debug.LogWarning($"{transform.name} LoadAttributes: You are missing attribute to load!!!", gameObject);
     }
 
-    public virtual void AddAttributeValue(AttributesCode attributeCode, float addValue){
+    public virtual void AddAttributeValue(AttributesCode attributeCode, float addValue, bool isBase){
         Attribute attribute = this.GetAttributeByCode(attributeCode);
+        if(isBase) attribute.AddBase(addValue);
         attribute.Add(addValue);
     }
 
-    public virtual void DeductAttributeValue(AttributesCode attributeCode, float deductValue){
+    public virtual void DeductAttributeValue(AttributesCode attributeCode, float deductValue, bool isBase){
         Attribute attribute = this.GetAttributeByCode(attributeCode);
+        if(isBase) attribute.DeductBase(deductValue);
         attribute.Deduct(deductValue);
     }
 

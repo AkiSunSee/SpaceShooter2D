@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using UnityEngine.Experimental.Rendering;
 
 [Serializable]
 public class Attribute{
     public AttributesCode attributesCode;
+    public float baseValue=0;
     public float currentValue =0;
 
     public virtual void Add(float addValue){
@@ -19,4 +22,16 @@ public class Attribute{
         this.currentValue = newValue;
     }
     
+    public virtual void AddBase(float addValue){
+        this.baseValue += addValue;
+    }
+
+    public virtual void DeductBase(float deductValue){
+        float newValue = this.baseValue - deductValue;
+        if(newValue <0){
+            this.baseValue = 0;
+            return;
+        }
+        this.baseValue = newValue;
+    }
 }

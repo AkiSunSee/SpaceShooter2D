@@ -6,6 +6,7 @@ public class AbilitySummon : BaseAbility
 {
     [Header("Ability Summon")]
     [SerializeField] protected Spawner spawner;
+    [SerializeField] protected Transform prefab;
 
     protected override void FixedUpdate(){
         base.FixedUpdate();
@@ -18,7 +19,9 @@ public class AbilitySummon : BaseAbility
     }
 
     protected virtual Transform Summon(){
-        Transform minionPrefab =  this.spawner.GetRandomPrefab();
+        Transform minionPrefab;
+        if(this.prefab == null) minionPrefab =  this.spawner.GetRandomPrefab();
+        else minionPrefab = this.prefab;
         Vector3 spawnPos = this.abilities.AbilityObjectCtrl.SpawnPoints.GetRandom().position;
         Transform minion = this.spawner.Spawn(minionPrefab, spawnPos, transform.rotation);
         minion.gameObject.SetActive(true);

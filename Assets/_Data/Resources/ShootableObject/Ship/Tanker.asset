@@ -20,6 +20,7 @@ MonoBehaviour:
   shootingSpeed: 0.7
   collectItemsRating: 1
   attack: 2
-  sprite: {fileID: 21300000, guid: fcdc27cb21cc4994cadd20f6e5e995fa, type: 3}
+  sprite: {fileID: 21300000, guid: 81d6b5ada8e24c54f8a40827f2ad008d, type: 3}
+  score: 1
   dropList: []
   buffList: []

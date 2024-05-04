@@ -45,6 +45,9 @@ public abstract class DamageReceiver : AkiBehaviour
         if(this.isDead) return;
 
         this.hp -= deduct;
+        Transform fx = FXSpawner.Instance.Spawn(FXSpawner.TextDamage, this.transform.position, Quaternion.identity);
+        fx.GetComponent<TextDamage>().SetDamage(deduct);
+        fx.gameObject.SetActive(true);
         if(this.hp < 0) this.hp = 0;
         this.CheckIsDead();
     }
