@@ -21,7 +21,7 @@ MonoBehaviour:
   collectItemsRating: 1
   attack: 2
   sprite: {fileID: 21300000, guid: 9d3d216390f1bc14eaffab175a65fb01, type: 3}
-  score: 2
+  score: 200
   exp: 3
   dropList:
   - itemPSO: {fileID: 11400000, guid: 8108f82699d57ba4a82b73aeb7e28cc0, type: 2}

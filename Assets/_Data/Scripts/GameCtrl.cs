@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameCtrl : AkiBehaviour
 {
@@ -52,5 +51,10 @@ public class GameCtrl : AkiBehaviour
 
     public virtual bool IsGamePaused(){
         return this.isGamePaused;
+    }
+
+    public virtual void EndGame(){
+        ScoreManager.Instance.AddNewScore();
+        SceneManager.LoadScene("StartupMenu");
     }
 }

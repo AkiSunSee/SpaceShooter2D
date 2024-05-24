@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -18,6 +19,12 @@ public class ShootableObjectDamageReciver : DamageReceiver
         this.hpMax = this.shootableObjectCtrl.ShootableObjectSO.hpMax;
         this.sphereCollider.radius = this.shootableObjectCtrl.ShootableObjectSO.radius; 
     }
+
+    public override void Reborn(){
+        int multiplier = (int)Math.Ceiling(LevelManager.Instance.GetCurrentLV()*0.25);
+        this.hpMax = this.shootableObjectCtrl.ShootableObjectSO.hpMax * multiplier;
+        base.Reborn();
+    }
     
     protected virtual void LoadShootableObjectCtrl(){
         if(this.shootableObjectCtrl != null) return;
@@ -26,6 +33,10 @@ public class ShootableObjectDamageReciver : DamageReceiver
     }
 
     protected override void OnDead(){
+        if(this.shootableObjectCtrl == PlayerCtrl.Instance.CurrentShip){
+            GameCtrl.Instance.EndGame();
+            return;
+        }
         this.OnDeadFX();
         this.DropOnDead();
         this.IncreaseScore();

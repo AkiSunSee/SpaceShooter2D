@@ -59,4 +59,8 @@ public class LevelManager : AkiBehaviour
         this.skillpoint--;
         UIShipAttributes.Instance.textSkillPoint.UpdateText(skillpoint);
     }
+
+    public virtual int GetCurrentLV(){
+        return this.currentLevel;
+    }
 }
